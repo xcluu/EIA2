@@ -3,9 +3,9 @@
  */
 window.addEventListener("load", init);
 function init() {
-    var canvas = document.getElementsByTagName("canvas")[0];
+    let canvas = document.getElementsByTagName("canvas")[0];
     console.log(canvas);
-    var crc2d = canvas.getContext("2d");
+    let crc2d = canvas.getContext("2d");
     console.log(crc2d);
     //himmel
     gradient = crc2d.createLinearGradient(0, 0, 0, 170);
@@ -181,3 +181,4 @@ function init() {
     crc2d.lineTo(135, 580);
     crc2d.fill();
 }
+//# sourceMappingURL=canvas.js.map
