@@ -80,36 +80,9 @@ function init(): void {
 
 
     //schneeflocken
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-
+    for (let i: number = 0; i < 20; i++) {
+        randomSnow();
+    }
 
     //baum
     drawTree(800, 600, 4, crc2d);
@@ -141,16 +114,9 @@ function init(): void {
     crc2d.stroke();
 
     //rdm baum
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
+    for (let i: number = 0; i < 10; i++) {
+        randomTree();
+    }
 
 
 

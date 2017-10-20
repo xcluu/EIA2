@@ -1,8 +1,8 @@
 window.addEventListener("load", init);
 function init() {
-    let canvas = document.getElementsByTagName("canvas")[0];
+    var canvas = document.getElementsByTagName("canvas")[0];
     console.log(canvas);
-    let crc2d = canvas.getContext("2d");
+    var crc2d = canvas.getContext("2d");
     console.log(crc2d);
     //himmel
     gradient = crc2d.createLinearGradient(0, 0, 0, 200);
@@ -60,35 +60,9 @@ function init() {
     crc2d.lineTo(675, 170);
     crc2d.fill();
     //schneeflocken
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
-    randomSnow();
+    for (var i = 0; i < 20; i++) {
+        randomSnow();
+    }
     //baum
     drawTree(800, 600, 4, crc2d);
     drawTree(700, 230, 1, crc2d);
@@ -115,16 +89,9 @@ function init() {
     crc2d.lineTo(50, 200);
     crc2d.stroke();
     //rdm baum
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
-    randomTree();
+    for (var i = 0; i < 10; i++) {
+        randomTree();
+    }
     //skilift schnur
     crc2d.beginPath();
     crc2d.moveTo(50, 100);
