@@ -119,7 +119,6 @@ function init(): void {
     }
 
 
-
     //skilift schnur
     crc2d.beginPath();
     crc2d.moveTo(50, 100);
@@ -205,58 +204,56 @@ function init(): void {
     crc2d.arc(350, 8, 25, 0, 2 * Math.PI);
     crc2d.fill();
     crc2d.fillStyle = "#a6a1b0";
+}
 
+function drawTree(x: number, y: number, size: number, canvas: HTMLCanvasELement): void {
+    canvas.fillStyle = "#53826a";
+    canvas.beginPath();
+    canvas.moveTo(x, y);
+    canvas.lineTo(x + (20 * size), y);
+    canvas.lineTo(x, y - (30 * size));
+    canvas.lineTo(x - (20 * size), y);
+    canvas.fill();
 
-    function drawTree(x: number, y: number, size: number, canvas: HTMLCanvasELement): void {
-        canvas.fillStyle = "#53826a";
-        canvas.beginPath();
-        canvas.moveTo(x, y);
-        canvas.lineTo(x + (20 * size), y);
-        canvas.lineTo(x, y - (30 * size));
-        canvas.lineTo(x - (20 * size), y);
-        canvas.fill();
+    canvas.beginPath();
+    canvas.moveTo(x, y - (15 * size));
+    canvas.lineTo(x + (15 * size), y - (15 * size));
+    canvas.lineTo(x, y - (45 * size));
+    canvas.lineTo(x - (15 * size), y - (15 * size));
+    canvas.fill();
 
-        canvas.beginPath();
-        canvas.moveTo(x, y - (15 * size));
-        canvas.lineTo(x + (15 * size), y - (15 * size));
-        canvas.lineTo(x, y - (45 * size));
-        canvas.lineTo(x - (15 * size), y - (15 * size));
-        canvas.fill();
+    canvas.beginPath();
+    canvas.moveTo(x, y - (30 * size));
+    canvas.lineTo(x + (10 * size), y - (30 * size));
+    canvas.lineTo(x, y - (60 * size));
+    canvas.lineTo(x - (10 * size), y - (30 * size));
+    canvas.fill();
+}
 
-        canvas.beginPath();
-        canvas.moveTo(x, y - (30 * size));
-        canvas.lineTo(x + (10 * size), y - (30 * size));
-        canvas.lineTo(x, y - (60 * size));
-        canvas.lineTo(x - (10 * size), y - (30 * size));
-        canvas.fill();
-    }
+function randomTree(): void {
+    drawTree(Math.random() * 400, 200 + Math.random() * 600,  0.8 + Math.random() * 1.5, crc2d);
+}
 
-    function randomTree(): void {
-        drawTree(Math.random() * 400, 200 + Math.random() * 600,  0.8 + Math.random() * 1.5, crc2d);
-    }
+function randomSnow(): void {
+    drawSnow(Math.random() * 800, Math.random() * 200,  0.8 + Math.random() * 1.5, crc2d);
+}
 
-    function randomSnow(): void {
-        drawSnow(Math.random() * 800, Math.random() * 200,  0.8 + Math.random() * 1.5, crc2d);
-    }
-
-    function drawSnow(x: number, y: number, size: number, canvas: HTMLCanvasELement): void {
-        canvas.strokeStyle = "#ffffff";
-        canvas.beginPath();
-        canvas.moveTo(x - (5 * size), y);
-        canvas.lineTo(x + (5 * size), y);
-        canvas.stroke();
-        canvas.beginPath();
-        canvas.moveTo(x, y - (5 * size));
-        canvas.lineTo(x, y + (5 * size));
-        canvas.stroke();
-        canvas.beginPath();
-        canvas.moveTo(x - (2.5 * size), y - (2.5 * size));
-        canvas.lineTo(x + (2.5 * size), y + (2.5 * size));
-        canvas.stroke();
-        canvas.beginPath();
-        canvas.moveTo(x + (2.5 * size), y - (2.5 * size));
-        canvas.lineTo(x - (2.5 * size), y + (2.5 * size));
-        canvas.stroke();
-    }
-
+function drawSnow(x: number, y: number, size: number, canvas: HTMLCanvasELement): void {
+    canvas.strokeStyle = "#ffffff";
+    canvas.beginPath();
+    canvas.moveTo(x - (5 * size), y);
+    canvas.lineTo(x + (5 * size), y);
+    canvas.stroke();
+    canvas.beginPath();
+    canvas.moveTo(x, y - (5 * size));
+    canvas.lineTo(x, y + (5 * size));
+    canvas.stroke();
+    canvas.beginPath();
+    canvas.moveTo(x - (2.5 * size), y - (2.5 * size));
+    canvas.lineTo(x + (2.5 * size), y + (2.5 * size));
+    canvas.stroke();
+    canvas.beginPath();
+    canvas.moveTo(x + (2.5 * size), y - (2.5 * size));
+    canvas.lineTo(x - (2.5 * size), y + (2.5 * size));
+    canvas.stroke();
 }
