@@ -10,8 +10,7 @@ namespace hi {
     window.addEventListener("load", init);
     let snowX: number[] = [];
     let snowY: number[] = [];
-    let cloudX: number[] = [];
-    let cloudY: number[] = [];
+    let cloudX: number[] = [200, 300];
     let hintergrund: ImageData;
     let crc2d: canvasRenderingContext2D;
 
@@ -182,36 +181,7 @@ namespace hi {
         crc2d.stroke();
 
         //wolken
-        crc2d.fillStyle = "#a6a1b0";
-        crc2d.beginPath();
-        crc2d.arc(200, 53, 18, 0, 2 * Math.PI);
-        crc2d.fill();
-        crc2d.fillStyle = "#a6a1b0";
-        crc2d.beginPath();
-        crc2d.arc(170, 55, 30, 0, 2 * Math.PI);
-        crc2d.fill();
-        crc2d.fillStyle = "#a6a1b0";
-        crc2d.beginPath();
-        crc2d.arc(140, 48, 18, 0, 2 * Math.PI);
-        crc2d.fill();
 
-        crc2d.fillStyle = "#a6a1b0";
-        crc2d.beginPath();
-        crc2d.arc(140, 65, 14, 0, 2 * Math.PI);
-        crc2d.fill();
-
-        crc2d.fillStyle = "#a6a1b0";
-        crc2d.beginPath();
-        crc2d.arc(300, 10, 50, 0, 2 * Math.PI);
-        crc2d.fill();
-        crc2d.fillStyle = "#a6a1b0";
-        crc2d.beginPath();
-        crc2d.arc(250, 10, 30, 0, 2 * Math.PI);
-        crc2d.fill();
-        crc2d.fillStyle = "#a6a1b0";
-        crc2d.beginPath();
-        crc2d.arc(350, 8, 25, 0, 2 * Math.PI);
-        crc2d.fill();
 
         hintergrund = crc2d.getImageData(0, 0, 800, 600);
         animate();
@@ -269,26 +239,62 @@ namespace hi {
         canvas.stroke();
     }
 
+    function drawCloud1(x: number): void {
+    crc2d.fillStyle = "#a6a1b0";
+    crc2d.beginPath();
+    crc2d.arc(x, 53, 18, 0, 2 * Math.PI);
+    crc2d.fill();
+    crc2d.fillStyle = "#a6a1b0";
+    crc2d.beginPath();
+    crc2d.arc(x - 30, 55, 30, 0, 2 * Math.PI);
+    crc2d.fill();
+    crc2d.fillStyle = "#a6a1b0";
+    crc2d.beginPath();
+    crc2d.arc(x - 60, 48, 18, 0, 2 * Math.PI);
+    crc2d.fill();
+    crc2d.fillStyle = "#a6a1b0";
+    crc2d.beginPath();
+    crc2d.arc(x - 60, 65, 14, 0, 2 * Math.PI);
+    crc2d.fill();
+}
+
+    function drawCloud2(x: number): void {
+        crc2d.fillStyle = "#a6a1b0";
+        crc2d.beginPath();
+        crc2d.arc(x, 10, 50, 0, 2 * Math.PI);
+        crc2d.fill();
+        crc2d.fillStyle = "#a6a1b0";
+        crc2d.beginPath();
+        crc2d.arc(x - 50, 10, 30, 0, 2 * Math.PI);
+        crc2d.fill();
+        crc2d.fillStyle = "#a6a1b0";
+        crc2d.beginPath();
+        crc2d.arc(x + 50, 8, 25, 0, 2 * Math.PI);
+        crc2d.fill();
+    }
+
     function animate(): void {
         crc2d.clearRect(0, 0, 800, 600);
         crc2d.putImageData(hintergrund, 0, 0);
 
         //schnee animieren
-        for (let i: number = 0; i < snowX.length; i++) {
+        for (let i: number = 1; i < snowX.length; i++) {
                 snowX[i] += 0.5;
                 snowY[i] += 2;
 
-                if (snowY[i] > 200) {
-                    snowY[i] = 0;
-                }
-                if (snowX[i] > 800) {
-                   snowX[i] = 0;
-                }
-                console.log("drawSnow");
+                if (snowY[i] > 200) {snowY[i] = 0; }
+                if (snowX[i] > 800) {snowX[i] = 0; }
+
                 drawSnow(snowX[i], snowY[i], 0.8 + Math.random() * 1.5, crc2d);
         }
 
-
+        //wolken animieren
+        for (let i: number = 0; i < cloudX.length; i++) {
+            cloudX[i] += 0.1;
+            if (cloudX[i] > 800) {cloudX[i] = 0; }
+        }
+        drawCloud1(cloudX[0]);
+        drawCloud2(cloudX[1]);
         window.setTimeout(animate, 20);
     }
 }
