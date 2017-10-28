@@ -329,25 +329,25 @@ var hi;
         drawCloud2(cloudX[1]);
         //lift animieren
         for (var i = 0; i < liftUpX.length; i++) {
-            moveUp();
+            moveUp(i);
             if (liftUpX[i] <= 50) {
                 console.log(i); //debug
-                checkLift();
+                checkLift(i);
                 //condition for moveDown is set, position is reset
                 liftDownX[i] = 50;
                 liftDownY[i] = 100;
                 liftStart[i] = true;
             }
-            moveDown();
+            moveDown(i);
         }
         window.setTimeout(animate, 20);
     }
-    function moveUp() {
+    function moveUp(i) {
         skiliftDynamic(liftUpX[i], liftUpY[i]);
         liftUpX[i] -= 2;
         liftUpY[i] -= 1.4;
     }
-    function checkLift() {
+    function checkLift(i) {
         //check which lift is up, reset position
         if (liftUpX[i] == liftUpX[0]) {
             liftUpX[0] = 766.666;
@@ -358,17 +358,17 @@ var hi;
             liftUpY[1] = 850;
         }
     }
-    function moveDown() {
-        for (var i = 0; i < liftDownX.length; i++) {
+    function moveDown(i) {
+        for (var i_1 = 0; i_1 < liftDownX.length; i_1++) {
             //check if up, start down
-            if (liftStart[i] == true) {
-                skiliftDynamic(liftDownX[i], liftDownY[i]);
-                liftDownX[i] += 3;
-                liftDownY[i] += 1.92;
+            if (liftStart[i_1] == true) {
+                skiliftDynamic(liftDownX[i_1], liftDownY[i_1]);
+                liftDownX[i_1] += 3;
+                liftDownY[i_1] += 1.92;
             }
             //stop function
-            if (liftDownX[i] > 800) {
-                liftStart[i] = false;
+            if (liftDownX[i_1] > 800) {
+                liftStart[i_1] = false;
             }
         }
     }

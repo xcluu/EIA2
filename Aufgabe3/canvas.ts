@@ -376,28 +376,28 @@ namespace hi {
 
         //lift animieren
         for (let i: number = 0; i < liftUpX.length; i++) {
-            moveUp();
+            moveUp(i);
             if (liftUpX[i] <= 50) {     //wenn lift ziel erreicht...
                 console.log(i);         //debug
-                checkLift();
+                checkLift(i);
                 //condition for moveDown is set, position is reset
                 liftDownX[i] = 50;
                 liftDownY[i] = 100;
                 liftStart[i] = true;
 
             }
-            moveDown();
+            moveDown(i);
         }
         window.setTimeout(animate, 20);
     }
 
-    function moveUp(): void {
+    function moveUp(i: number): void {
         skiliftDynamic(liftUpX[i], liftUpY[i]);
         liftUpX[i] -= 2;
         liftUpY[i] -= 1.4;
     }
 
-    function checkLift(): void {
+    function checkLift(i: number): void {
         //check which lift is up, reset position
         if (liftUpX[i] == liftUpX[0]) {
             liftUpX[0] = 766.666;
@@ -409,7 +409,7 @@ namespace hi {
         }
     }
 
-    function moveDown(): void {
+    function moveDown(i: number): void {
     for (let i: number = 0; i < liftDownX.length; i++) {
         //check if up, start down
         if (liftStart[i] == true) {
