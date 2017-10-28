@@ -14,10 +14,10 @@ var hi;
     var cloudX = [200, 300];
     var liftUpX = [766.666, 1125];
     var liftUpY = [600, 850];
-    var liftDownX = [50, 50];
-    var liftDownY = [100, 100];
+    var liftDownX = 50;
+    var liftDownY = 100;
     var staticObjects;
-    var liftStart = [false, false];
+    var liftStart = false;
     var crc2d;
     function init() {
         var canvas = document.getElementsByTagName("canvas")[0];
@@ -334,11 +334,11 @@ var hi;
                 console.log(i); //debug
                 checkLift(i);
                 //condition for moveDown is set, position is reset
-                liftDownX[i] = 50;
-                liftDownY[i] = 100;
-                liftStart[i] = true;
+                liftDownX = 50;
+                liftDownY = 100;
+                liftStart = true;
             }
-            moveDown(i);
+            moveDown();
         }
         window.setTimeout(animate, 20);
     }
@@ -358,18 +358,17 @@ var hi;
             liftUpY[1] = 850;
         }
     }
-    function moveDown(i) {
-        for (var i_1 = 0; i_1 < liftDownX.length; i_1++) {
-            //check if up, start down
-            if (liftStart[i_1] == true) {
-                skiliftDynamic(liftDownX[i_1], liftDownY[i_1]);
-                liftDownX[i_1] += 3;
-                liftDownY[i_1] += 1.92;
-            }
-            //stop function
-            if (liftDownX[i_1] > 800) {
-                liftStart[i_1] = false;
-            }
+    function moveDown() {
+        //for (let i: number = 0; i < liftDownX.length; i++) {
+        //check if up, start down
+        if (liftStart == true) {
+            skiliftDynamic(liftDownX, liftDownY);
+            liftDownX += 1;
+            liftDownY += 0.64;
+        }
+        //stop function
+        if (liftDownX > 800) {
+            liftStart = false;
         }
     }
 })(hi || (hi = {}));
