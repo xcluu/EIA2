@@ -11,7 +11,12 @@ namespace hi {
     let snowX: number[] = [];
     let snowY: number[] = [];
     let cloudX: number[] = [200, 300];
-    let hintergrund: ImageData;
+    let liftUpX: number[] = [766.666, 1125];
+    let liftUpY: number = [600, 850];
+    let liftDownX: number[] = [50, 50];
+    let liftDownY: number[] = [100, 100];
+    let staticObjects: ImageData;
+    let liftStart: boolean[] = [false, false];
     let crc2d: canvasRenderingContext2D;
 
     function init(): void {
@@ -20,6 +25,49 @@ namespace hi {
 
         crc2d = canvas.getContext("2d");
         console.log(crc2d);
+
+        //schneeflocken-position festlegen
+        for (let i: number = 0; i < 30; i++) {
+            snowX[i] = Math.random() * 800;
+            console.log("x" + i + " = " + snowX[i]);
+            snowY[i] = Math.random() * 200;
+        }
+
+        initBG();
+
+        //skilift hinten (muss hier hin damits hinter den baeumen bleibt)
+        crc2d.strokeStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.moveTo(25, 100);
+        crc2d.lineTo(75, 100);
+        crc2d.stroke();
+
+        crc2d.beginPath();
+        crc2d.moveTo(65, 100);
+        crc2d.lineTo(65, 130);
+        crc2d.quadraticCurveTo(65, 135, 55, 135);
+        crc2d.lineTo(45, 135);
+        crc2d.quadraticCurveTo(35, 135, 35, 130);
+        crc2d.lineTo(35, 100);
+        crc2d.stroke();
+
+        crc2d.beginPath();
+        crc2d.moveTo(50, 135);
+        crc2d.lineTo(50, 200);
+        crc2d.stroke();
+
+        //rdm baum
+        for (let i: number = 0; i < 10; i++) {
+            randomTree();
+        }
+
+        skiliftStatic();
+
+        staticObjects = crc2d.getImageData(0, 0, 800, 600);
+        animate();
+    }
+
+    function initBG(): void {
         //himmel
         gradient = crc2d.createLinearGradient(0, 0, 0, 200);
         gradient.addColorStop(0, "#cdcce3");
@@ -82,14 +130,6 @@ namespace hi {
         crc2d.lineTo(675, 170);
         crc2d.fill();
 
-
-        //schneeflocken-position festlegen
-        for (let i: number = 0; i < 30; i++) {
-            snowX[i] = Math.random() * 800;
-            console.log("x" + i + " = " + snowX[i]);
-            snowY[i] = Math.random() * 200;
-        }
-
         //baum
         drawTree(800, 600, 4, crc2d);
         drawTree(700, 230, 1, crc2d);
@@ -97,94 +137,6 @@ namespace hi {
         drawTree(770, 350, 1.6, crc2d);
         drawTree(780, 250, 0.8, crc2d);
         drawTree(740, 205, 0.5, crc2d);
-
-        //skilift hinten
-        crc2d.strokeStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.moveTo(25, 100);
-        crc2d.lineTo(75, 100);
-        crc2d.stroke();
-
-        crc2d.beginPath();
-        crc2d.moveTo(65, 100);
-        crc2d.lineTo(65, 130);
-        crc2d.quadraticCurveTo(65, 135, 55, 135);
-        crc2d.lineTo(45, 135);
-        crc2d.quadraticCurveTo(35, 135, 35, 130);
-        crc2d.lineTo(35, 100);
-        crc2d.stroke();
-
-        crc2d.beginPath();
-        crc2d.moveTo(50, 135);
-        crc2d.lineTo(50, 200);
-        crc2d.stroke();
-
-        //rdm baum
-        for (let i: number = 0; i < 10; i++) {
-            randomTree();
-        }
-
-
-        //skilift schnur
-        crc2d.strokeStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.moveTo(50, 100);
-        crc2d.lineTo(800, 600);
-        crc2d.stroke();
-
-        //skilift vorne
-        crc2d.strokeStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.moveTo(450, 400);
-        crc2d.lineTo(550, 400);
-        crc2d.stroke();
-
-        crc2d.beginPath();
-        crc2d.moveTo(530, 400);
-        crc2d.lineTo(530, 450);
-        crc2d.quadraticCurveTo(530, 460, 520, 460);
-        crc2d.lineTo(480, 460);
-        crc2d.quadraticCurveTo(470, 460, 470, 450);
-        crc2d.lineTo(470, 400);
-        crc2d.stroke();
-
-        crc2d.beginPath();
-        crc2d.moveTo(500, 460);
-        crc2d.lineTo(500, 600);
-        crc2d.stroke();
-
-        //skilift zeug
-        crc2d.fillStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.arc(600, 467, 3, 0, 2 * Math.PI);
-        crc2d.fill();
-
-        crc2d.beginPath();
-        crc2d.moveTo(600, 467);
-        crc2d.lineTo(600, 485);
-        crc2d.stroke();
-
-        crc2d.beginPath();
-        crc2d.moveTo(585, 485);
-        crc2d.lineTo(615, 485);
-        crc2d.quadraticCurveTo(620, 485, 620, 490);
-        crc2d.lineTo(620, 510);
-        crc2d.lineTo(580, 510);
-        crc2d.lineTo(580, 490);
-        crc2d.quadraticCurveTo(580, 485, 585, 485);
-        crc2d.stroke();
-
-        crc2d.strokeStyle = "#c80000";
-        crc2d.beginPath();
-        crc2d.moveTo(575, 510);
-        crc2d.lineTo(625, 510);
-        crc2d.stroke();
-
-        //wolken
-
-
-        hintergrund = crc2d.getImageData(0, 0, 800, 600);
-        animate();
     }
 
     function drawTree(x: number, y: number, size: number, canvas: HTMLCanvasELement): void {
@@ -240,23 +192,23 @@ namespace hi {
     }
 
     function drawCloud1(x: number): void {
-    crc2d.fillStyle = "#a6a1b0";
-    crc2d.beginPath();
-    crc2d.arc(x, 53, 18, 0, 2 * Math.PI);
-    crc2d.fill();
-    crc2d.fillStyle = "#a6a1b0";
-    crc2d.beginPath();
-    crc2d.arc(x - 30, 55, 30, 0, 2 * Math.PI);
-    crc2d.fill();
-    crc2d.fillStyle = "#a6a1b0";
-    crc2d.beginPath();
-    crc2d.arc(x - 60, 48, 18, 0, 2 * Math.PI);
-    crc2d.fill();
-    crc2d.fillStyle = "#a6a1b0";
-    crc2d.beginPath();
-    crc2d.arc(x - 60, 65, 14, 0, 2 * Math.PI);
-    crc2d.fill();
-}
+        crc2d.fillStyle = "#a6a1b0";
+        crc2d.beginPath();
+        crc2d.arc(x, 53, 18, 0, 2 * Math.PI);
+        crc2d.fill();
+        crc2d.fillStyle = "#a6a1b0";
+        crc2d.beginPath();
+        crc2d.arc(x - 30, 55, 30, 0, 2 * Math.PI);
+        crc2d.fill();
+        crc2d.fillStyle = "#a6a1b0";
+        crc2d.beginPath();
+        crc2d.arc(x - 60, 48, 18, 0, 2 * Math.PI);
+        crc2d.fill();
+        crc2d.fillStyle = "#a6a1b0";
+        crc2d.beginPath();
+        crc2d.arc(x - 60, 65, 14, 0, 2 * Math.PI);
+        crc2d.fill();
+    }
 
     function drawCloud2(x: number): void {
         crc2d.fillStyle = "#a6a1b0";
@@ -273,19 +225,104 @@ namespace hi {
         crc2d.fill();
     }
 
+    function skiliftStatic(): void {
+        //skilift schnur1
+        crc2d.strokeStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.moveTo(50, 100);
+        crc2d.lineTo(766.66, 600);
+        crc2d.stroke();
+
+        //skilift schnur2
+        crc2d.strokeStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.moveTo(50, 100);
+        crc2d.lineTo(800, 578.72);
+        crc2d.stroke();
+
+        //skilift vorne
+        crc2d.strokeStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.moveTo(450, 400);
+        crc2d.lineTo(550, 400);
+        crc2d.stroke();
+
+        crc2d.beginPath();
+        crc2d.moveTo(530, 400);
+        crc2d.lineTo(530, 450);
+        crc2d.quadraticCurveTo(530, 460, 520, 460);
+        crc2d.lineTo(480, 460);
+        crc2d.quadraticCurveTo(470, 460, 470, 450);
+        crc2d.lineTo(470, 400);
+        crc2d.stroke();
+
+        crc2d.beginPath();
+        crc2d.moveTo(500, 460);
+        crc2d.lineTo(500, 600);
+        crc2d.stroke();
+    }
+
+    function skiliftDynamic(x: number, y: number): void {
+        //skilift zeug
+        crc2d.fillStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.arc(x, y, 3, 0, 2 * Math.PI);
+        crc2d.fill();
+
+        crc2d.strokeStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.moveTo(x, y);
+        crc2d.lineTo(x, y + 18);
+        crc2d.stroke();
+
+        crc2d.beginPath();
+        crc2d.moveTo(x - 15, y + 18);
+        crc2d.lineTo(x + 15 , y + 18);
+        crc2d.quadraticCurveTo(x + 20, y + 18, x + 20, y + 23);
+        crc2d.lineTo(x + 20, y + 43);
+        crc2d.lineTo(x - 20, y + 43);
+        crc2d.lineTo(x - 20, y + 23);
+        crc2d.quadraticCurveTo(x - 20, y + 18, x - 15, y + 18);
+        crc2d.stroke();
+
+        crc2d.strokeStyle = "#c80000";
+        crc2d.beginPath();
+        crc2d.moveTo(x - 25, y + 43);
+        crc2d.lineTo(x + 25, y + 43);
+        crc2d.stroke();
+    }
+
+    // function liftDown(i: number): void {
+    //     skiliftDynamic(liftDownX[i], liftDownY[i]);
+    //     liftDownX[i] += 3;
+    //     liftDownY[i] += 1.92;
+    //
+    //     this.timeoutID = window.setTimeout(liftDown, 20);
+    //
+    //     if (liftDownX[i] > 800) {
+    //         window.clearTimeout(this.timeoutID);
+    //         this.timeoutID = undefined;
+    //     }
+    // }
+
     function animate(): void {
         crc2d.clearRect(0, 0, 800, 600);
-        crc2d.putImageData(hintergrund, 0, 0);
+        crc2d.putImageData(staticObjects, 0, 0);
+
 
         //schnee animieren
         for (let i: number = 1; i < snowX.length; i++) {
-                snowX[i] += 0.5;
-                snowY[i] += 2;
+            snowX[i] += 0.5;
+            snowY[i] += 2;
 
-                if (snowY[i] > 200) {snowY[i] = 0; }
-                if (snowX[i] > 800) {snowX[i] = 0; }
+            if (snowY[i] > 200) {
+                snowY[i] = 0;
+            }
+            if (snowX[i] > 800) {
+                snowX[i] = 0;
+            }
 
-                drawSnow(snowX[i], snowY[i], 0.8 + Math.random() * 1.5, crc2d);
+            drawSnow(snowX[i], snowY[i], 0.8 + Math.random() * 1.5, crc2d);
         }
 
         //wolken animieren
@@ -295,6 +332,43 @@ namespace hi {
         }
         drawCloud1(cloudX[0]);
         drawCloud2(cloudX[1]);
+
+        //lift nach oben
+        for (let i: number = 0; i < liftUpX.length; i++) {
+            skiliftDynamic(liftUpX[i], liftUpY[i]);
+            liftUpX[i] -= 2;
+            liftUpY[i] -= 1.4;
+            if (liftUpX[i] <= 50) {
+                console.log(i);
+                if (liftUpX[i] == liftUpX[0]) {
+                    liftUpX[0] = 766.666;
+                    liftUpY[0] = 600;
+                }
+                else if (liftUpX[i] == liftUpX[1]) {
+                    liftUpX[1] = 1125;
+                    liftUpY[1] = 850;
+                }
+                liftDownX[i] = 50;
+                liftDownY[i] = 100;
+                //lift nach unten startet sobald lift oben ist
+                liftStart[i] = true;
+
+            }
+            for (let i: number = 0; i < liftDownX.length; i++) {
+                if (liftStart[i] == true) {
+                    skiliftDynamic(liftDownX[i], liftDownY[i]);
+                    liftDownX[i] += 3;
+                    liftDownY[i] += 1.92;
+                }
+                if (liftDownX[i] > 800) {
+                    liftStart[i] = false;
+                }
+
+            }
+        }
+
+
+
         window.setTimeout(animate, 20);
     }
 }
