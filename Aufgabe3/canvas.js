@@ -49,6 +49,39 @@ var hi;
         crc2d.moveTo(50, 135);
         crc2d.lineTo(50, 200);
         crc2d.stroke();
+        //skifahrer sitzend
+        crc2d.fillStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.arc(50, 10, 4, 0, 2 * Math.PI);
+        crc2d.fill();
+        crc2d.beginPath();
+        crc2d.moveTo(47, 16);
+        crc2d.lineTo(47, 27);
+        crc2d.lineTo(54, 27);
+        crc2d.lineTo(54, 16);
+        crc2d.fill();
+        crc2d.beginPath();
+        crc2d.moveTo(47, 23);
+        crc2d.lineTo(42, 23);
+        crc2d.lineTo(42, 27);
+        crc2d.lineTo(47, 27);
+        crc2d.fill();
+        crc2d.beginPath();
+        crc2d.moveTo(42, 27);
+        crc2d.lineTo(42, 33);
+        crc2d.lineTo(45, 33);
+        crc2d.lineTo(45, 27);
+        crc2d.fill();
+        crc2d.fillStyle = "#000000";
+        crc2d.beginPath();
+        crc2d.arc(70, 10, 4, 0, 2 * Math.PI);
+        crc2d.fill();
+        crc2d.beginPath();
+        crc2d.moveTo(65, 15);
+        crc2d.lineTo(71, 17);
+        crc2d.lineTo(67, 26);
+        crc2d.lineTo(61, 24);
+        crc2d.fill();
         //rdm baum
         for (var i = 0; i < 10; i++) {
             randomTree();
@@ -257,18 +290,19 @@ var hi;
         crc2d.lineTo(x + 25, y + 43);
         crc2d.stroke();
     }
-    // function liftDown(i: number): void {
-    //     skiliftDynamic(liftDownX[i], liftDownY[i]);
-    //     liftDownX[i] += 3;
-    //     liftDownY[i] += 1.92;
-    //
-    //     this.timeoutID = window.setTimeout(liftDown, 20);
-    //
-    //     if (liftDownX[i] > 800) {
-    //         window.clearTimeout(this.timeoutID);
-    //         this.timeoutID = undefined;
-    //     }
-    // }
+    //funktioniert nur als einzelner lift im bild ohne i
+    /*function liftDown(i: number): void {
+        skiliftDynamic(liftDownX[i], liftDownY[i]);
+        liftDownX[i] += 3;
+        liftDownY[i] += 1.92;
+
+        this.timeoutID = window.setTimeout(liftDown, 20);
+
+        if (liftDownX[i] > 800) {
+            window.clearTimeout(this.timeoutID);
+            this.timeoutID = undefined;
+        }
+    }*/
     function animate() {
         crc2d.clearRect(0, 0, 800, 600);
         crc2d.putImageData(staticObjects, 0, 0);
@@ -293,38 +327,50 @@ var hi;
         }
         drawCloud1(cloudX[0]);
         drawCloud2(cloudX[1]);
-        //lift nach oben
+        //lift animieren
         for (var i = 0; i < liftUpX.length; i++) {
-            skiliftDynamic(liftUpX[i], liftUpY[i]);
-            liftUpX[i] -= 2;
-            liftUpY[i] -= 1.4;
+            moveUp();
             if (liftUpX[i] <= 50) {
-                console.log(i);
-                if (liftUpX[i] == liftUpX[0]) {
-                    liftUpX[0] = 766.666;
-                    liftUpY[0] = 600;
-                }
-                else if (liftUpX[i] == liftUpX[1]) {
-                    liftUpX[1] = 1125;
-                    liftUpY[1] = 850;
-                }
+                console.log(i); //debug
+                checkLift();
+                //condition for moveDown is set, position is reset
                 liftDownX[i] = 50;
                 liftDownY[i] = 100;
-                //lift nach unten startet sobald lift oben ist
                 liftStart[i] = true;
             }
-            for (var i_1 = 0; i_1 < liftDownX.length; i_1++) {
-                if (liftStart[i_1] == true) {
-                    skiliftDynamic(liftDownX[i_1], liftDownY[i_1]);
-                    liftDownX[i_1] += 3;
-                    liftDownY[i_1] += 1.92;
-                }
-                if (liftDownX[i_1] > 800) {
-                    liftStart[i_1] = false;
-                }
-            }
+            moveDown();
         }
         window.setTimeout(animate, 20);
+    }
+    function moveUp() {
+        skiliftDynamic(liftUpX[i], liftUpY[i]);
+        liftUpX[i] -= 2;
+        liftUpY[i] -= 1.4;
+    }
+    function checkLift() {
+        //check which lift is up, reset position
+        if (liftUpX[i] == liftUpX[0]) {
+            liftUpX[0] = 766.666;
+            liftUpY[0] = 600;
+        }
+        else if (liftUpX[i] == liftUpX[1]) {
+            liftUpX[1] = 1125;
+            liftUpY[1] = 850;
+        }
+    }
+    function moveDown() {
+        for (var i = 0; i < liftDownX.length; i++) {
+            //check if up, start down
+            if (liftStart[i] == true) {
+                skiliftDynamic(liftDownX[i], liftDownY[i]);
+                liftDownX[i] += 3;
+                liftDownY[i] += 1.92;
+            }
+            //stop function
+            if (liftDownX[i] > 800) {
+                liftStart[i] = false;
+            }
+        }
     }
 })(hi || (hi = {}));
 //# sourceMappingURL=canvas.js.map
