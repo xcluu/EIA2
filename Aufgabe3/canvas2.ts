@@ -25,57 +25,58 @@ namespace hi {
         changePath: boolean;
 
         constructor() {
-            xPos = 766.666;
-            yPos = 600;
-            changePath = false;
+            this.xPos = 766.666;
+            this.yPos = 600;
+            this.changePath = false;
         }
 
         draw(): void {
             crc2d.fillStyle = "#000000";
             crc2d.beginPath();
-            crc2d.arc(xPos, yPos, 3, 0, 2 * Math.PI);
+            crc2d.arc(this.xPos, this.yPos, 3, 0, 2 * Math.PI);
             crc2d.fill();
 
             crc2d.strokeStyle = "#000000";
             crc2d.beginPath();
-            crc2d.moveTo(xPos, yPos);
-            crc2d.lineTo(xPos, yPos + 18);
+            crc2d.moveTo(this.xPos, this.yPos);
+            crc2d.lineTo(this.xPos, this.yPos + 18);
             crc2d.stroke();
 
             crc2d.beginPath();
-            crc2d.moveTo(xPos - 15, yPos + 18);
-            crc2d.lineTo(xPos + 15, yPos + 18);
-            crc2d.quadraticCurveTo(xPos + 20, yPos + 18, xPos + 20, yPos + 23);
-            crc2d.lineTo(xPos + 20, yPos + 43);
-            crc2d.lineTo(xPos - 20, yPos + 43);
-            crc2d.lineTo(xPos - 20, yPos + 23);
-            crc2d.quadraticCurveTo(xPos - 20, yPos + 18, xPos - 15, yPos + 18);
+            crc2d.moveTo(this.xPos - 15, this.yPos + 18);
+            crc2d.lineTo(this.xPos + 15, this.yPos + 18);
+            crc2d.quadraticCurveTo(this.xPos + 20, this.yPos + 18, this.xPos + 20, this.yPos + 23);
+            crc2d.lineTo(this.xPos + 20, this.yPos + 43);
+            crc2d.lineTo(this.xPos - 20, this.yPos + 43);
+            crc2d.lineTo(this.xPos - 20, this.yPos + 23);
+            crc2d.quadraticCurveTo(this.xPos - 20, this.yPos + 18, this.xPos - 15, this.yPos + 18);
             crc2d.stroke();
 
             crc2d.strokeStyle = "#c80000";
             crc2d.beginPath();
-            crc2d.moveTo(xPos - 25, yPos + 43);
-            crc2d.lineTo(xPos + 25, yPos + 43);
+            crc2d.moveTo(this.xPos - 25, this.yPos + 43);
+            crc2d.lineTo(this.xPos + 25, this.yPos + 43);
             crc2d.lineWidth = 2;
             crc2d.stroke();
             crc2d.lineWidth = 1;
         }
 
         animate(): void {
-            if (xPos >= 50) {changePath = true; }
-            if (changePath == false) {this.moveUp(); }
-            else if (changePath == true) {this.moveDown(); }
+
+            if (this.xPos <= 50) {this.changePath = true; }
+            if (this.changePath == false) {this.moveUp(); }
+            else if (this.changePath == true) {this.moveDown(); }
             this.draw();
         }
 
         moveUp(): void {
-            xPos -= 3;
-            yPos -= 2.1;
+            this.xPos -= 3;
+            this.yPos -= 2.1;
         }
 
         moveDown(): void {
-            xPos += +3;
-            yPos += 1.92;
+            this.xPos += +3;
+            this.yPos += 1.92;
         }
     }
 
@@ -446,16 +447,15 @@ namespace hi {
            lift[i].animate();
 
            //bei haelfte des canvas-width soll neuer lift erscheinen
-           if (lift[i].xPos == 400) {
+           if (lift[i].xPos < 400 && lift[i].xPos > 396 && lift[i].yPos < 345 && lift[i].yPos > 340) {
                lift.push(new Skilift);
            }
-
-           //lift wird geloescht wenn nicht mehr gebraucht
-           if (lift[i].xPos > 800) {
-               delete lift[i];
-           }
         }
-
+        //lift wird geloescht wenn nicht mehr gebraucht
+        if (lift[0].xPos > 800) {
+            lift.splice(0, 1);
+            console.log(lift.length);
+        }
         window.setTimeout(animate, 20);
     }
 }
