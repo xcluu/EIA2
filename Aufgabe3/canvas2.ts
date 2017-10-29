@@ -13,7 +13,7 @@ namespace hi {
     let snowY: number[] = [];
     let snowXsmall: number[] = [];
     let snowYsmall: number[] = [];
-    let cloudX: number[] = [200, 300];
+    let cloudX: number[] = [200, 300, 600];
     let staticObjects: ImageData;
     let crc2d: canvasRenderingContext2D;
     let lift: object[] = [];
@@ -498,6 +498,7 @@ namespace hi {
         }
         drawCloud1(cloudX[0]);
         drawCloud2(cloudX[1]);
+        drawCloud1(cloudX[2]);
 
         //lift animieren
         for (let i: number = 0; i < lift.length; i++) {

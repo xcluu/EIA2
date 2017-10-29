@@ -13,7 +13,7 @@ var hi;
     var snowY = [];
     var snowXsmall = [];
     var snowYsmall = [];
-    var cloudX = [200, 300];
+    var cloudX = [200, 300, 600];
     var staticObjects;
     var crc2d;
     var lift = [];
@@ -435,6 +435,7 @@ var hi;
         }
         drawCloud1(cloudX[0]);
         drawCloud2(cloudX[1]);
+        drawCloud1(cloudX[2]);
         //lift animieren
         for (var i = 0; i < lift.length; i++) {
             lift[i].animate();
