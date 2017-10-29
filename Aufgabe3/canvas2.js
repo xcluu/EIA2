@@ -2,7 +2,7 @@
  Aufgabe 3: Animation: Schneegestöber
  Name: Claudia Wegen
  Matrikel: 256214
- Datum: 18.10.2017
+ Datum: 29.10.2017
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
@@ -20,6 +20,7 @@ var hi;
         function Skifahrer() {
             this.xPos = 50;
             this.yPos = 150;
+            this.yAdd = 0;
             this.angle = Math.random() * 3;
         }
         Skifahrer.prototype.draw = function () {
@@ -64,7 +65,8 @@ var hi;
         };
         Skifahrer.prototype.animate = function () {
             this.xPos += this.angle;
-            this.yPos += 2;
+            this.yAdd += 0.1;
+            this.yPos += 1 + this.yAdd;
             this.draw();
         };
         return Skifahrer;

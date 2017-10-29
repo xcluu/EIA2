@@ -20,11 +20,13 @@ namespace hi {
     class Skifahrer {
         xPos: number;
         yPos: number;
+        yAdd: number;
         angle: number;
 
         constructor() {
             this.xPos = 50;
             this.yPos = 150;
+            this.yAdd = 0;
             this.angle = Math.random() * 3;
         }
 
@@ -77,7 +79,8 @@ namespace hi {
 
         animate(): void {
             this.xPos += this.angle;
-            this.yPos += 2;
+            this.yAdd += 0.1;
+            this.yPos += 1 + this.yAdd;
             this.draw();
         }
     }
