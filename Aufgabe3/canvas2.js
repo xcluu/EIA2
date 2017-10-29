@@ -11,6 +11,8 @@ var hi;
     window.addEventListener("load", init);
     var snowX = [];
     var snowY = [];
+    var snowXsmall = [];
+    var snowYsmall = [];
     var cloudX = [200, 300];
     var staticObjects;
     var crc2d;
@@ -191,8 +193,11 @@ var hi;
         //schneeflocken-position festlegen
         for (var i = 0; i < 30; i++) {
             snowX[i] = Math.random() * 800;
-            console.log("x" + i + " = " + snowX[i]);
             snowY[i] = Math.random() * 200;
+        }
+        for (var i = 0; i < 30; i++) {
+            snowXsmall[i] = Math.random() * 800;
+            snowYsmall[i] = Math.random() * 200;
         }
         initBG();
         //skilift hinten (muss hier hin damits hinter den baeumen bleibt)
@@ -409,6 +414,17 @@ var hi;
                 snowX[i] = 0;
             }
             drawSnow(snowX[i], snowY[i], 0.8 + Math.random() * 1.5, crc2d);
+        }
+        for (var i = 1; i < snowXsmall.length; i++) {
+            snowXsmall[i] += 0.5;
+            snowYsmall[i] += 2;
+            if (snowYsmall[i] > 200) {
+                snowYsmall[i] = 0;
+            }
+            if (snowXsmall[i] > 800) {
+                snowXsmall[i] = 0;
+            }
+            drawSnow(snowXsmall[i], snowYsmall[i], 0.3 + Math.random() * 0.8, crc2d);
         }
         //wolken animieren
         for (var i = 0; i < cloudX.length; i++) {

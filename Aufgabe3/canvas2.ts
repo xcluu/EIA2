@@ -11,6 +11,8 @@ namespace hi {
 
     let snowX: number[] = [];
     let snowY: number[] = [];
+    let snowXsmall: number[] = [];
+    let snowYsmall: number[] = [];
     let cloudX: number[] = [200, 300];
     let staticObjects: ImageData;
     let crc2d: canvasRenderingContext2D;
@@ -224,8 +226,11 @@ namespace hi {
         //schneeflocken-position festlegen
         for (let i: number = 0; i < 30; i++) {
             snowX[i] = Math.random() * 800;
-            console.log("x" + i + " = " + snowX[i]);
             snowY[i] = Math.random() * 200;
+        }
+        for (let i: number = 0; i < 30; i++) {
+            snowXsmall[i] = Math.random() * 800;
+            snowYsmall[i] = Math.random() * 200;
         }
 
         initBG();
@@ -471,6 +476,17 @@ namespace hi {
                 snowX[i] = 0;
             }
             drawSnow(snowX[i], snowY[i], 0.8 + Math.random() * 1.5, crc2d);
+        }
+        for (let i: number = 1; i < snowXsmall.length; i++) {
+            snowXsmall[i] += 0.5;
+            snowYsmall[i] += 2;
+            if (snowYsmall[i] > 200) {
+                snowYsmall[i] = 0;
+            }
+            if (snowXsmall[i] > 800) {
+                snowXsmall[i] = 0;
+            }
+            drawSnow(snowXsmall[i], snowYsmall[i], 0.3 + Math.random() * 0.8, crc2d);
         }
 
         //wolken animieren
