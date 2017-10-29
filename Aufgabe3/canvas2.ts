@@ -193,7 +193,7 @@ namespace hi {
             if (this.xPos <= 50) {
                 this.changePath = true;
                 //... manche trauen sich nicht runter :D
-                if (Math.random() > 0.3) {
+                if (Math.random() > 0.2) {
                     this.fahrer = false;
                     skifahrer.push(new Skifahrer);
                 }

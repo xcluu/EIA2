@@ -13,10 +13,10 @@ namespace hi {
     let cloudX: number[] = [200, 300];
     let liftUpX: number[] = [766.666, 1125];
     let liftUpY: number[] = [600, 850];
-    let liftDownX: number = 50;
-    let liftDownY: number = 100;
+    let liftDownX: number[] = [50, 50];
+    let liftDownY: number[] = [100, 100];
     let staticObjects: ImageData;
-    let liftStart: boolean = false;
+    let liftStart: boolean[] = [false, false];
     let crc2d: canvasRenderingContext2D;
 
     function init(): void {
@@ -329,7 +329,9 @@ namespace hi {
         crc2d.beginPath();
         crc2d.moveTo(x - 25, y + 43);
         crc2d.lineTo(x + 25, y + 43);
+        crc2d.lineWidth = 2;
         crc2d.stroke();
+        crc2d.lineWidth = 1;
     }
 
     //funktioniert nur als einzelner lift im bild ohne i
@@ -381,20 +383,20 @@ namespace hi {
                 console.log(i);         //debug
                 checkLift(i);
                 //condition for moveDown is set, position is reset
-                liftDownX = 50;
-                liftDownY = 100;
-                liftStart = true;
+                liftDownX[i] = 50;
+                liftDownY[i] = 100;
+                liftStart[i] = true;
 
             }
-            moveDown();
+            moveDown(i);
         }
         window.setTimeout(animate, 20);
     }
 
     function moveUp(i: number): void {
         skiliftDynamic(liftUpX[i], liftUpY[i]);
-        liftUpX[i] -= 2;
-        liftUpY[i] -= 1.4;
+        liftUpX[i] -= 3;
+        liftUpY[i] -= 2.1;
     }
 
     function checkLift(i: number): void {
@@ -409,17 +411,18 @@ namespace hi {
         }
     }
 
-    function moveDown(): void {
-    //for (let i: number = 0; i < liftDownX.length; i++) {
+    function moveDown(i: number): void {
+    for (let i: number = 0; i < liftDownX.length; i++) {
         //check if up, start down
-        if (liftStart == true) {
-            skiliftDynamic(liftDownX, liftDownY);
-            liftDownX += 1;
-            liftDownY += 0.64;
+        if (liftStart[i] == true) {
+            skiliftDynamic(liftDownX[i], liftDownY[i]);
+            liftDownX[i] += 3;
+            liftDownY[i] += 1.92;
         }
         //stop function
-        if (liftDownX > 800) {
-            liftStart = false;
+        if (liftDownX[i] > 800) {
+            liftStart[i] = false;
         }
     }
+}
 }
