@@ -1,6 +1,3 @@
-/**
- * Created by Claudia on 29.10.2017.
- */
 /*
  Aufgabe 3: Animation: Schneegestöber
  Name: Claudia Wegen
@@ -18,13 +15,69 @@ var hi;
     var staticObjects;
     var crc2d;
     var lift = [];
+    var skifahrer = [];
+    var Skifahrer = /** @class */ (function () {
+        function Skifahrer() {
+            this.xPos = 50;
+            this.yPos = 150;
+            this.angle = Math.random() * 3;
+        }
+        Skifahrer.prototype.draw = function () {
+            //skifahrer zeichnen
+            crc2d.fillStyle = "#000000";
+            crc2d.beginPath();
+            crc2d.arc(this.xPos, this.yPos, 4, 0, 2 * Math.PI);
+            crc2d.fill();
+            crc2d.beginPath();
+            crc2d.moveTo(this.xPos - 5, this.yPos + 5);
+            crc2d.lineTo(this.xPos + 1, this.yPos + 7);
+            crc2d.lineTo(this.xPos - 3, this.yPos + 16);
+            crc2d.lineTo(this.xPos - 9, this.yPos + 14);
+            crc2d.fill();
+            crc2d.beginPath();
+            crc2d.moveTo(this.xPos - 9, this.yPos + 14);
+            crc2d.lineTo(this.xPos - 11, this.yPos + 25);
+            crc2d.lineTo(this.xPos - 9, this.yPos + 25);
+            crc2d.lineTo(this.xPos - 6, this.yPos + 14);
+            crc2d.fill();
+            crc2d.beginPath();
+            crc2d.moveTo(this.xPos - 6, this.yPos + 15);
+            crc2d.lineTo(this.xPos - 2, this.yPos + 25);
+            crc2d.lineTo(this.xPos, this.yPos + 25);
+            crc2d.lineTo(this.xPos - 3, this.yPos + 15);
+            crc2d.fill();
+            crc2d.beginPath();
+            crc2d.moveTo(this.xPos + 1, this.yPos + 7);
+            crc2d.lineTo(this.xPos + 4, this.yPos + 15);
+            crc2d.lineTo(this.xPos + 2, this.yPos + 16);
+            crc2d.lineTo(this.xPos - 1, this.yPos + 8);
+            crc2d.fill();
+            crc2d.strokeStyle = "#c80000";
+            crc2d.beginPath();
+            crc2d.moveTo(this.xPos + 3, this.yPos + 32);
+            crc2d.lineTo(this.xPos - 9, this.yPos + 8);
+            crc2d.stroke();
+            crc2d.beginPath();
+            crc2d.moveTo(this.xPos - 10, this.yPos + 32);
+            crc2d.lineTo(this.xPos - 11, this.yPos + 7);
+            crc2d.stroke();
+        };
+        Skifahrer.prototype.animate = function () {
+            this.xPos += this.angle;
+            this.yPos += 2;
+            this.draw();
+        };
+        return Skifahrer;
+    }());
     var Skilift = /** @class */ (function () {
         function Skilift() {
             this.xPos = 766.666;
             this.yPos = 600;
             this.changePath = false;
+            this.fahrer = true;
         }
         Skilift.prototype.draw = function () {
+            //lift zeichnen
             crc2d.fillStyle = "#000000";
             crc2d.beginPath();
             crc2d.arc(this.xPos, this.yPos, 3, 0, 2 * Math.PI);
@@ -50,10 +103,65 @@ var hi;
             crc2d.lineWidth = 2;
             crc2d.stroke();
             crc2d.lineWidth = 1;
+            //skifahrer sitzend hoch
+            if (this.changePath == false) {
+                crc2d.fillStyle = "#000000";
+                crc2d.beginPath();
+                crc2d.arc(this.xPos, this.yPos + 25, 4, 0, 2 * Math.PI);
+                crc2d.fill();
+                crc2d.beginPath();
+                crc2d.moveTo(this.xPos - 3, this.yPos + 31);
+                crc2d.lineTo(this.xPos - 3, this.yPos + 42);
+                crc2d.lineTo(this.xPos + 4, this.yPos + 42);
+                crc2d.lineTo(this.xPos + 4, this.yPos + 31);
+                crc2d.fill();
+                crc2d.beginPath();
+                crc2d.moveTo(this.xPos - 3, this.yPos + 38);
+                crc2d.lineTo(this.xPos - 8, this.yPos + 38);
+                crc2d.lineTo(this.xPos - 8, this.yPos + 42);
+                crc2d.lineTo(this.xPos - 3, this.yPos + 42);
+                crc2d.fill();
+                crc2d.beginPath();
+                crc2d.moveTo(this.xPos - 8, this.yPos + 42);
+                crc2d.lineTo(this.xPos - 8, this.yPos + 48);
+                crc2d.lineTo(this.xPos - 5, this.yPos + 38);
+                crc2d.lineTo(this.xPos - 5, this.yPos + 42);
+                crc2d.fill();
+            }
+            else if (this.changePath == true && this.fahrer == true) {
+                //skifahrer sitzend runter
+                crc2d.fillStyle = "#000000";
+                crc2d.beginPath();
+                crc2d.arc(this.xPos, this.yPos + 25, 4, 0, 2 * Math.PI);
+                crc2d.fill();
+                crc2d.beginPath();
+                crc2d.moveTo(this.xPos - 4, this.yPos + 31);
+                crc2d.lineTo(this.xPos - 4, this.yPos + 42);
+                crc2d.lineTo(this.xPos + 3, this.yPos + 42);
+                crc2d.lineTo(this.xPos + 3, this.yPos + 31);
+                crc2d.fill();
+                crc2d.beginPath();
+                crc2d.moveTo(this.xPos + 3, this.yPos + 38);
+                crc2d.lineTo(this.xPos + 8, this.yPos + 38);
+                crc2d.lineTo(this.xPos + 8, this.yPos + 42);
+                crc2d.lineTo(this.xPos + 3, this.yPos + 42);
+                crc2d.fill();
+                crc2d.beginPath();
+                crc2d.moveTo(this.xPos + 8, this.yPos + 42);
+                crc2d.lineTo(this.xPos + 8, this.yPos + 48);
+                crc2d.lineTo(this.xPos + 5, this.yPos + 48);
+                crc2d.lineTo(this.xPos + 5, this.yPos + 42);
+                crc2d.fill();
+            }
         };
         Skilift.prototype.animate = function () {
             if (this.xPos <= 50) {
                 this.changePath = true;
+                //... manche trauen sich nicht runter :D
+                if (Math.random() > 0.3) {
+                    this.fahrer = false;
+                    skifahrer.push(new Skifahrer);
+                }
             }
             if (this.changePath == false) {
                 this.moveUp();
@@ -103,45 +211,14 @@ var hi;
         crc2d.moveTo(50, 135);
         crc2d.lineTo(50, 200);
         crc2d.stroke();
-        //skifahrer sitzend
-        crc2d.fillStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.arc(50, 10, 4, 0, 2 * Math.PI);
-        crc2d.fill();
-        crc2d.beginPath();
-        crc2d.moveTo(47, 16);
-        crc2d.lineTo(47, 27);
-        crc2d.lineTo(54, 27);
-        crc2d.lineTo(54, 16);
-        crc2d.fill();
-        crc2d.beginPath();
-        crc2d.moveTo(47, 23);
-        crc2d.lineTo(42, 23);
-        crc2d.lineTo(42, 27);
-        crc2d.lineTo(47, 27);
-        crc2d.fill();
-        crc2d.beginPath();
-        crc2d.moveTo(42, 27);
-        crc2d.lineTo(42, 33);
-        crc2d.lineTo(45, 33);
-        crc2d.lineTo(45, 27);
-        crc2d.fill();
-        crc2d.fillStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.arc(70, 10, 4, 0, 2 * Math.PI);
-        crc2d.fill();
-        crc2d.beginPath();
-        crc2d.moveTo(65, 15);
-        crc2d.lineTo(71, 17);
-        crc2d.lineTo(67, 26);
-        crc2d.lineTo(61, 24);
-        crc2d.fill();
         //rdm baum
         for (var i = 0; i < 10; i++) {
             randomTree();
         }
         skiliftStatic();
+        //erster lift wird generiert
         lift.push(new Skilift);
+        //bild wird gespeichert
         staticObjects = crc2d.getImageData(0, 0, 800, 600);
         animate();
     }
@@ -233,9 +310,6 @@ var hi;
     function randomTree() {
         drawTree(Math.random() * 400, 200 + Math.random() * 600, 0.8 + Math.random() * 1.5, crc2d);
     }
-    function randomSnow() {
-        drawSnow(Math.random() * 800, Math.random() * 200, 0.8 + Math.random() * 1.5, crc2d);
-    }
     function drawSnow(x, y, size, canvas) {
         canvas.strokeStyle = "#ffffff";
         canvas.beginPath();
@@ -319,47 +393,6 @@ var hi;
         crc2d.lineTo(500, 600);
         crc2d.stroke();
     }
-    function skiliftDynamic(x, y) {
-        //skilift zeug
-        crc2d.fillStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.arc(x, y, 3, 0, 2 * Math.PI);
-        crc2d.fill();
-        crc2d.strokeStyle = "#000000";
-        crc2d.beginPath();
-        crc2d.moveTo(x, y);
-        crc2d.lineTo(x, y + 18);
-        crc2d.stroke();
-        crc2d.beginPath();
-        crc2d.moveTo(x - 15, y + 18);
-        crc2d.lineTo(x + 15, y + 18);
-        crc2d.quadraticCurveTo(x + 20, y + 18, x + 20, y + 23);
-        crc2d.lineTo(x + 20, y + 43);
-        crc2d.lineTo(x - 20, y + 43);
-        crc2d.lineTo(x - 20, y + 23);
-        crc2d.quadraticCurveTo(x - 20, y + 18, x - 15, y + 18);
-        crc2d.stroke();
-        crc2d.strokeStyle = "#c80000";
-        crc2d.beginPath();
-        crc2d.moveTo(x - 25, y + 43);
-        crc2d.lineTo(x + 25, y + 43);
-        crc2d.lineWidth = 2;
-        crc2d.stroke();
-        crc2d.lineWidth = 1;
-    }
-    //funktioniert nur als einzelner lift im bild ohne i
-    /*function liftDown(i: number): void {
-     skiliftDynamic(liftDownX[i], liftDownY[i]);
-     liftDownX[i] += 3;
-     liftDownY[i] += 1.92;
-
-     this.timeoutID = window.setTimeout(liftDown, 20);
-
-     if (liftDownX[i] > 800) {
-     window.clearTimeout(this.timeoutID);
-     this.timeoutID = undefined;
-     }
-     }*/
     function animate() {
         crc2d.clearRect(0, 0, 800, 600);
         crc2d.putImageData(staticObjects, 0, 0);
@@ -390,6 +423,15 @@ var hi;
             //bei haelfte des canvas-width soll neuer lift erscheinen
             if (lift[i].xPos < 400 && lift[i].xPos > 396 && lift[i].yPos < 345 && lift[i].yPos > 340) {
                 lift.push(new Skilift);
+            }
+        }
+        //skifahrer animieren
+        for (var n = 0; n < skifahrer.length; n++) {
+            skifahrer[n].animate();
+            //arrayelement skifahrer wird geloescht wenn nicht mehr gebraucht
+            if (skifahrer[n].yPos > 600 && skifahrer.length > 1) {
+                skifahrer.splice(0, 1);
+                console.log(skifahrer.length);
             }
         }
         //lift wird geloescht wenn nicht mehr gebraucht
