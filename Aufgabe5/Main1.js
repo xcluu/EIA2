@@ -32,4 +32,4 @@ var L05_Class;
         window.setTimeout(animate, 20);
     }
 })(L05_Class || (L05_Class = {}));
-//# sourceMappingURL=main1.js.map
+//# sourceMappingURL=Main1.js.map

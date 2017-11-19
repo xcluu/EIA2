@@ -19,7 +19,6 @@ namespace nr5 {
             this.stay = true;
             this.fahrer = new Skifahrer;
             skifahrer.push (this.fahrer);
-            console.log(this.fahrer);
         }
 
         draw(): void {

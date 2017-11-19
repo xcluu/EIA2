@@ -12,21 +12,24 @@ namespace nr5 {
 
     export class Tree implements IntTree {
 
-        constructor() {
+/*        constructor() {
             this.x = Math.random() * 400;
             this.y = 200 + Math.random() * 600;
             this.size = 0.8 + Math.random() * 1.5;
             this.draw();
-        }
+        }*/
 
-        constructor(x: number, y: number, size: number) {
-            this.x = x;
-            this.y = y;
-            this.size = size;
+        constructor(_x?: number = Math.random() * 400, _y?: number = 200 + Math.random() * 600, _size?: number = 0.8 + Math.random() * 1.5) {
+            this.x = _x;
+            this.y = _y;
+            this.size = _size;
+            console.log(this.x + "," + this.y + "," + this.size);
             this.draw();
         }
 
         draw(): void {
+            console.log(this.x + "," + this.y + "," + this.size);
+            console.log("draw");
             crc2d.fillStyle = "#53826a";
             crc2d.beginPath();
             crc2d.moveTo(this.x, this.y);

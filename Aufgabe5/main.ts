@@ -2,12 +2,12 @@
  Aufgabe 4 Interface: Assoziative Skipiste
  Name: Claudia Wegen
  Matrikel: 256214
- Datum: 12.11.2017
+ Datum: 17.11.2017
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
 namespace nr5 {
-    //Stimmt das Interface fuer die Klasse so? Ich glaube das Interface macht in dem Fall gar nichts... xD
+    //Ich brauch wieder Hilfe - meine Baeume funktionieren immer noch nicht obwohl die Objekte nun erstellt werden. :3
 
 
     window.addEventListener("load", init);
@@ -20,15 +20,21 @@ namespace nr5 {
     let treeList: IntTree[] = [];
     let lift: IntSkilift[] = [];
     export let skifahrer: IntSkifahrer[] = [];
+    let testTree: IntTree;
 
     function init(): void {
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
 
+
         crc2d = canvas.getContext("2d");
         console.log(crc2d);
 
+        crc2d.mozImageSmoothingEnabled = false;
+        crc2d.imageSmoothingEnabled = true;
         //draw trees
+        testTree = new Tree(700, 500, 2);
+        treeList.push(testTree);
         treeList.push(new Tree(800, 600, 4));
         treeList.push(new Tree(700, 230, 1));
         treeList.push(new Tree(720, 300, 1.2));
@@ -43,7 +49,6 @@ namespace nr5 {
             treeList.push(new Tree);
         }
 
-        treeList[11].draw();
         drawSkiliftStatic();
 
         //erster lift wird generiert

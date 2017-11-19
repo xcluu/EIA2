@@ -11,7 +11,6 @@ var nr5;
             this.stay = true;
             this.fahrer = new nr5.Skifahrer;
             nr5.skifahrer.push(this.fahrer);
-            console.log(this.fahrer);
         }
         Skilift.prototype.draw = function () {
             //lift zeichnen

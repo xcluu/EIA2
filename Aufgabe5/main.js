@@ -2,13 +2,13 @@
  Aufgabe 4 Interface: Assoziative Skipiste
  Name: Claudia Wegen
  Matrikel: 256214
- Datum: 12.11.2017
+ Datum: 17.11.2017
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
 var nr5;
 (function (nr5) {
-    //Stimmt das Interface fuer die Klasse so? Ich glaube das Interface macht in dem Fall gar nichts... xD
+    //Ich brauch wieder Hilfe - meine Baeume funktionieren immer noch nicht obwohl die Objekte nun erstellt werden. :3
     window.addEventListener("load", init);
     var staticImg;
     var snowList = [];
@@ -16,12 +16,17 @@ var nr5;
     var treeList = [];
     var lift = [];
     nr5.skifahrer = [];
+    var testTree;
     function init() {
         var canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
         nr5.crc2d = canvas.getContext("2d");
         console.log(nr5.crc2d);
+        nr5.crc2d.mozImageSmoothingEnabled = false;
+        nr5.crc2d.imageSmoothingEnabled = true;
         //draw trees
+        testTree = new nr5.Tree(700, 500, 2);
+        treeList.push(testTree);
         treeList.push(new nr5.Tree(800, 600, 4));
         treeList.push(new nr5.Tree(700, 230, 1));
         treeList.push(new nr5.Tree(720, 300, 1.2));
@@ -33,7 +38,6 @@ var nr5;
         for (var i = 0; i < 10; i++) {
             treeList.push(new nr5.Tree);
         }
-        treeList[11].draw();
         drawSkiliftStatic();
         //erster lift wird generiert
         lift.push(new nr5.Skilift);
