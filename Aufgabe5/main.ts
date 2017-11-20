@@ -1,5 +1,5 @@
 /*
- Aufgabe 4 Interface: Assoziative Skipiste
+ Aufgabe 5 Classes: OO Skipiste
  Name: Claudia Wegen
  Matrikel: 256214
  Datum: 17.11.2017
