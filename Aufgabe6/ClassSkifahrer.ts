@@ -83,7 +83,7 @@ namespace nr6 {
         }
 
         checkHeartbeat(): boolean {
-                if (this.y > 600) {
+                if (this.y > 600 || this.x > 800) {
                     this.heartbeat = false;
                 }
                 return this.heartbeat;

@@ -209,12 +209,18 @@ namespace nr6 {
                 lift.push(new Skilift);
 
             }
-            // if (lift[i].checkHeartbeat == false) {
-            //         lift.splice(i, 1);
-            //         console.log("o/");
-            // }
+            if (lift[i].checkHeartbeat() == false) {
+                    lift.splice(i, 1);
+                    console.log(lift.length);
+            }
         }
 
+        for (let i: number = 0; i < skifahrer.length; i++) {
+            if  (skifahrer[i].checkHeartbeat() == false) {
+                skifahrer.splice(i, 1);
+                console.log(skifahrer.length);
+            }
+        }
         //lift.filter(checkHeartbeat());
         window.setTimeout(animate, 20);
     }

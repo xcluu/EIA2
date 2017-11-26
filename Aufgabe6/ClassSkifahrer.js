@@ -9,10 +9,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 /*
- Aufgabe 5 Classes: OO Skipiste
+ Aufgabe 6: Polymorphe Skipiste
  Name: Claudia Wegen
  Matrikel: 256214
- Datum: 17.11.2017
+ Datum: 26.11.2017
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
@@ -78,7 +78,7 @@ var nr6;
             this.y += 1 + this.yAdd;
         };
         Skifahrer.prototype.checkHeartbeat = function () {
-            if (this.y > 600) {
+            if (this.y > 600 || this.x > 800) {
                 this.heartbeat = false;
             }
             return this.heartbeat;

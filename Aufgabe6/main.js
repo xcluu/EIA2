@@ -1,8 +1,8 @@
 /*
- Aufgabe 5 Classes: OO Skipiste
+ Aufgabe 6: Polymorphe Skipiste
  Name: Claudia Wegen
  Matrikel: 256214
- Datum: 17.11.2017
+ Datum: 26.11.2017
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
@@ -176,10 +176,18 @@ var nr6;
             if (lift[i].x < 400 && lift[i].x > 396 && lift[i].y < 345 && lift[i].y > 340) {
                 lift.push(new nr6.Skilift);
             }
-            // if (lift[i].checkHeartbeat == false) {
-            //         lift.splice(i, 1);
-            //         console.log("o/");
-            // }
+            if (lift[i].checkHeartbeat() == false) {
+                lift.splice(i, 1);
+                console.log("o/");
+                console.log(lift.length);
+            }
+        }
+        for (var i = 0; i < nr6.skifahrer.length; i++) {
+            if (nr6.skifahrer[i].checkHeartbeat() == false) {
+                nr6.skifahrer.splice(i, 1);
+                console.log("\o");
+                console.log(nr6.skifahrer.length);
+            }
         }
         //lift.filter(checkHeartbeat());
         window.setTimeout(animate, 20);
