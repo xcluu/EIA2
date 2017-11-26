@@ -209,10 +209,10 @@ namespace nr6 {
                 lift.push(new Skilift);
 
             }
-            if (lift[i].checkHeartbeat == false) {
-                    lift.splice(i, 1);
-                    console.log("o/");
-            }
+            // if (lift[i].checkHeartbeat == false) {
+            //         lift.splice(i, 1);
+            //         console.log("o/");
+            // }
         }
 
         //lift.filter(checkHeartbeat());
