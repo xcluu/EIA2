@@ -1,8 +1,8 @@
 /*
- Aufgabe 5 Classes: OO Skipiste
+ Aufgabe 6: Polymorphe Skipiste
  Name: Claudia Wegen
  Matrikel: 256214
- Datum: 17.11.2017
+ Datum: 26.11.2017
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
