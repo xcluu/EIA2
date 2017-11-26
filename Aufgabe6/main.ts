@@ -52,7 +52,7 @@ namespace nr6 {
             snowList.push(new Snowflake);
         }
         console.log(snowList);
-        // //wolken werden generiert
+        // // wolken werden generiert
         // cloudList.push(new Cloud(200, 100, drawCloud1));
         // cloudList.push(new Cloud(300, 100, drawCloud2));
         // cloudList.push(new Cloud(500, 100, drawCloud1));
@@ -214,13 +214,12 @@ namespace nr6 {
                     console.log(lift.length);
             }
         }
-
-        for (let i: number = 0; i < skifahrer.length; i++) {
-            if  (skifahrer[i].checkHeartbeat() == false) {
-                skifahrer.splice(i, 1);
-                console.log(skifahrer.length);
-            }
+        if  (skifahrer[0].checkHeartbeat() == false) {
+            skifahrer.splice(0, 1);
+            console.log(skifahrer.length);
         }
+
+
         //lift.filter(checkHeartbeat());
         window.setTimeout(animate, 20);
     }

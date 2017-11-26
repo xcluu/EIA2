@@ -130,6 +130,10 @@ var nr6;
                 this.moveDown();
             }
             //skifahrer.filter(skifahrer.checkHeartbeat());
+            if (this.x > 800 && this.stay == true) {
+                //unschoen geloest aber dennoch xD
+                this.fahrer.heartbeat = false;
+            }
         };
         Skilift.prototype.moveUp = function () {
             this.x -= 3;

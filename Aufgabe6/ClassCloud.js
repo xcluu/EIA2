@@ -22,7 +22,7 @@ var nr6;
         __extends(Cloud, _super);
         function Cloud(x, y, callFunction) {
             var _this = _super.call(this, x, y) || this;
-            _this.superSpecialPointer = callFunction;
+            _this.superSpecialPointer() = callFunction;
             console.log(_this.superSpecialPointer.toString());
             return _this;
         }

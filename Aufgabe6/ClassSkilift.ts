@@ -131,6 +131,11 @@ namespace nr6 {
             if (this.changePath == false) {this.moveUp(); }
             else if (this.changePath == true) {this.moveDown(); }
             //skifahrer.filter(skifahrer.checkHeartbeat());
+
+            if (this.x > 800 && this.stay == true) {
+                //unschoen geloest aber dennoch xD
+                this.fahrer.heartbeat = false;
+            }
         }
 
         moveUp(): void {

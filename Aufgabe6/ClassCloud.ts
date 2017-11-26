@@ -16,7 +16,7 @@ namespace nr6 {
 
         constructor(x: number, y: number, callFunction: any) {
             super(x, y);
-            this.superSpecialPointer = callFunction;
+            this.superSpecialPointer() = callFunction;
             console.log(this.superSpecialPointer.toString());
         }
 

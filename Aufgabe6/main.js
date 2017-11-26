@@ -43,7 +43,7 @@ var nr6;
             snowList.push(new nr6.Snowflake);
         }
         console.log(snowList);
-        // //wolken werden generiert
+        // // wolken werden generiert
         // cloudList.push(new Cloud(200, 100, drawCloud1));
         // cloudList.push(new Cloud(300, 100, drawCloud2));
         // cloudList.push(new Cloud(500, 100, drawCloud1));
@@ -178,16 +178,12 @@ var nr6;
             }
             if (lift[i].checkHeartbeat() == false) {
                 lift.splice(i, 1);
-                console.log("o/");
                 console.log(lift.length);
             }
         }
-        for (var i = 0; i < nr6.skifahrer.length; i++) {
-            if (nr6.skifahrer[i].checkHeartbeat() == false) {
-                nr6.skifahrer.splice(i, 1);
-                console.log("\o");
-                console.log(nr6.skifahrer.length);
-            }
+        if (nr6.skifahrer[0].checkHeartbeat() == false) {
+            nr6.skifahrer.splice(0, 1);
+            console.log(nr6.skifahrer.length);
         }
         //lift.filter(checkHeartbeat());
         window.setTimeout(animate, 20);
