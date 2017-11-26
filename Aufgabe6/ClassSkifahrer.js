@@ -16,14 +16,14 @@ var __extends = (this && this.__extends) || (function () {
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
-var nr5;
-(function (nr5) {
+var nr6;
+(function (nr6) {
     var Skifahrer = /** @class */ (function (_super) {
         __extends(Skifahrer, _super);
         function Skifahrer() {
-            var _this = this;
-            _this.xPos = 50;
-            _this.yPos = 150;
+            var _this = _super.call(this) || this;
+            _this.x = 50;
+            _this.y = 150;
             _this.yAdd = 0;
             _this.angle = Math.random() * 3;
             _this.color = "hsl(" + Math.random() * 360 + ", " + Math.random() * 100 + "%, " + Math.random() * 100 + "%)";
@@ -32,53 +32,59 @@ var nr5;
         }
         Skifahrer.prototype.draw = function () {
             //skifahrer zeichnen
-            nr5.crc2d.fillStyle = "#d6c2bb";
-            nr5.crc2d.beginPath();
-            nr5.crc2d.arc(this.xPos, this.yPos, 4, 0, 2 * Math.PI);
-            nr5.crc2d.fill();
-            nr5.crc2d.fillStyle = this.color;
-            nr5.crc2d.beginPath();
-            nr5.crc2d.moveTo(this.xPos - 5, this.yPos + 5);
-            nr5.crc2d.lineTo(this.xPos + 1, this.yPos + 7);
-            nr5.crc2d.lineTo(this.xPos - 3, this.yPos + 16);
-            nr5.crc2d.lineTo(this.xPos - 9, this.yPos + 14);
-            nr5.crc2d.fill();
-            nr5.crc2d.beginPath();
-            nr5.crc2d.moveTo(this.xPos - 9, this.yPos + 14);
-            nr5.crc2d.lineTo(this.xPos - 11, this.yPos + 25);
-            nr5.crc2d.lineTo(this.xPos - 9, this.yPos + 25);
-            nr5.crc2d.lineTo(this.xPos - 6, this.yPos + 14);
-            nr5.crc2d.fill();
-            nr5.crc2d.beginPath();
-            nr5.crc2d.moveTo(this.xPos - 6, this.yPos + 15);
-            nr5.crc2d.lineTo(this.xPos - 2, this.yPos + 25);
-            nr5.crc2d.lineTo(this.xPos, this.yPos + 25);
-            nr5.crc2d.lineTo(this.xPos - 3, this.yPos + 15);
-            nr5.crc2d.fill();
-            nr5.crc2d.beginPath();
-            nr5.crc2d.moveTo(this.xPos + 1, this.yPos + 7);
-            nr5.crc2d.lineTo(this.xPos + 4, this.yPos + 15);
-            nr5.crc2d.lineTo(this.xPos + 2, this.yPos + 16);
-            nr5.crc2d.lineTo(this.xPos - 1, this.yPos + 8);
-            nr5.crc2d.fill();
-            nr5.crc2d.strokeStyle = this.skicolor;
-            nr5.crc2d.beginPath();
-            nr5.crc2d.moveTo(this.xPos + 3, this.yPos + 32);
-            nr5.crc2d.lineTo(this.xPos - 9, this.yPos + 8);
-            nr5.crc2d.stroke();
-            nr5.crc2d.beginPath();
-            nr5.crc2d.moveTo(this.xPos - 10, this.yPos + 32);
-            nr5.crc2d.lineTo(this.xPos - 11, this.yPos + 7);
-            nr5.crc2d.stroke();
+            nr6.crc2d.fillStyle = "#d6c2bb";
+            nr6.crc2d.beginPath();
+            nr6.crc2d.arc(this.x, this.y, 4, 0, 2 * Math.PI);
+            nr6.crc2d.fill();
+            nr6.crc2d.fillStyle = this.color;
+            nr6.crc2d.beginPath();
+            nr6.crc2d.moveTo(this.x - 5, this.y + 5);
+            nr6.crc2d.lineTo(this.x + 1, this.y + 7);
+            nr6.crc2d.lineTo(this.x - 3, this.y + 16);
+            nr6.crc2d.lineTo(this.x - 9, this.y + 14);
+            nr6.crc2d.fill();
+            nr6.crc2d.beginPath();
+            nr6.crc2d.moveTo(this.x - 9, this.y + 14);
+            nr6.crc2d.lineTo(this.x - 11, this.y + 25);
+            nr6.crc2d.lineTo(this.x - 9, this.y + 25);
+            nr6.crc2d.lineTo(this.x - 6, this.y + 14);
+            nr6.crc2d.fill();
+            nr6.crc2d.beginPath();
+            nr6.crc2d.moveTo(this.x - 6, this.y + 15);
+            nr6.crc2d.lineTo(this.x - 2, this.y + 25);
+            nr6.crc2d.lineTo(this.x, this.y + 25);
+            nr6.crc2d.lineTo(this.x - 3, this.y + 15);
+            nr6.crc2d.fill();
+            nr6.crc2d.beginPath();
+            nr6.crc2d.moveTo(this.x + 1, this.y + 7);
+            nr6.crc2d.lineTo(this.x + 4, this.y + 15);
+            nr6.crc2d.lineTo(this.x + 2, this.y + 16);
+            nr6.crc2d.lineTo(this.x - 1, this.y + 8);
+            nr6.crc2d.fill();
+            nr6.crc2d.strokeStyle = this.skicolor;
+            nr6.crc2d.beginPath();
+            nr6.crc2d.moveTo(this.x + 3, this.y + 32);
+            nr6.crc2d.lineTo(this.x - 9, this.y + 8);
+            nr6.crc2d.stroke();
+            nr6.crc2d.beginPath();
+            nr6.crc2d.moveTo(this.x - 10, this.y + 32);
+            nr6.crc2d.lineTo(this.x - 11, this.y + 7);
+            nr6.crc2d.stroke();
         };
         Skifahrer.prototype.animate = function () {
-            this.xPos += this.angle;
-            this.yAdd += 0.1;
-            this.yPos += 1 + this.yAdd;
             this.draw();
+            this.x += this.angle;
+            this.yAdd += 0.1;
+            this.y += 1 + this.yAdd;
+        };
+        Skifahrer.prototype.checkHeartbeat = function () {
+            if (this.y > 600) {
+                this.heartbeat = false;
+            }
+            return this.heartbeat;
         };
         return Skifahrer;
-    }(MovingObjects));
-    nr5.Skifahrer = Skifahrer;
-})(nr5 || (nr5 = {}));
+    }(nr6.MovingObject));
+    nr6.Skifahrer = Skifahrer;
+})(nr6 || (nr6 = {}));
 //# sourceMappingURL=ClassSkifahrer.js.map

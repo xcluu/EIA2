@@ -6,12 +6,9 @@
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
-namespace nr5 {
-    //Ich brauch wieder Hilfe - meine Baeume funktionieren immer noch nicht obwohl die Objekte nun erstellt werden. :3
-
+namespace nr6 {
 
     window.addEventListener("load", init);
-
 
     let staticImg: ImageData;
     export let crc2d: canvasRenderingContext2D;
@@ -29,10 +26,11 @@ namespace nr5 {
         crc2d = canvas.getContext("2d");
         console.log(crc2d);
 
-        crc2d.mozImageSmoothingEnabled = false;
-        crc2d.imageSmoothingEnabled = true;
-        //draw trees
+        // crc2d.mozImageSmoothingEnabled = false;
+        // crc2d.imageSmoothingEnabled = true;
 
+        initBG();
+        //draw trees
         treeList.push(new Tree(700, 500, 3));
         treeList.push(new Tree(800, 600, 4));
         treeList.push(new Tree(700, 230, 1));
@@ -40,28 +38,24 @@ namespace nr5 {
         treeList.push(new Tree(770, 350, 1.6));
         treeList.push(new Tree(780, 250, 0.8));
         treeList.push(new Tree(740, 205, 0.5));
-
-        initBG();
-
         //draw random trees
         for (let i: number = 0; i < 10; i++) {
             treeList.push(new Tree);
         }
-
         drawSkiliftStatic();
 
         //erster lift wird generiert
         lift.push(new Skilift);
 
         //schnee wird generiert
-        for (let i: number = 0; i < 50; i++) {
-            snowList.push(new Snow);
+        for (let i: number = 0; i < 100; i++) {
+            snowList.push(new Snowflake);
         }
-
-        //wolken werden generiert
-        cloudList.push(new Cloud(200));
-        cloudList.push(new Cloud(300));
-        cloudList.push(new Cloud(500));
+        console.log(snowList);
+        // //wolken werden generiert
+        // cloudList.push(new Cloud(200, 100, drawCloud1));
+        // cloudList.push(new Cloud(300, 100, drawCloud2));
+        // cloudList.push(new Cloud(500, 100, drawCloud1));
 
         //bild wird gespeichert
         staticImg = crc2d.getImageData(0, 0, 800, 600);
@@ -199,65 +193,31 @@ namespace nr5 {
 
         //schnee animieren
         for (let i: number = 0; i < snowList.length; i++) {
-            snowList[i].x += 0.5;
-            snowList[i].y += 2;
-            if (snowList[i].y > 200) {
-                snowList[i].y = 0;
-            }
-            if (snowList[i].x > 800) {
-                snowList[i].x = 0;
-            }
-            snowList[i].draw(0.8 + Math.random() * 1.5);
-        }
-        for (let i: number = 0; i < snowList.length; i++) {
-            snowList[i].xSmall += 0.5;
-            snowList[i].ySmall += 2;
-            if (snowList[i].ySmall > 200) {
-                snowList[i].ySmall = 0;
-            }
-            if (snowList[i].xSmall > 800) {
-                snowList[i].xSmall = 0;
-            }
-            snowList[i].drawSmall(0.3 + Math.random() * 0.8);
+            snowList[i].animate();
         }
 
         //wolken animieren
-        for (let i: number = 0; i < cloudList.length; i++) {
-            cloudList[i].x += 0.5;
-            if (cloudList[i].x > 800) {
-                cloudList[i].x = 0;
-            }
-        }
-
-        cloudList[0].drawCloud1();
-        cloudList[1].drawCloud2();
-        cloudList[2].drawCloud1();
+        // for (let i: number = 0; i < cloudList.length; i++) {
+        //     cloudList[i].animate();
+        // }
 
         //lift animieren
         for (let i: number = 0; i < lift.length; i++) {
-           lift[i].animate();
-           //bei haelfte des canvas-width soll neuer lift erscheinen
-           if (lift[i].xPos < 400 && lift[i].xPos > 396 && lift[i].yPos < 345 && lift[i].yPos > 340) {
-               lift.push(new Skilift);
-           }
+            lift[i].animate();
+            //console.log("o/");
+            if (lift[i].x < 400 && lift[i].x > 396 && lift[i].y < 345 && lift[i].y > 340) {
+                lift.push(new Skilift);
 
+            }
+            if (lift[i].checkHeartbeat == false) {
+                    lift.splice(i, 1);
+                    console.log("o/");
+            }
         }
 
-        //skifahrer animieren
-        for (let n: number = 0; n < skifahrer.length; n++) {
-            //skifahrer[n].animate();
-
-            //arrayelement skifahrer wird geloescht wenn nicht mehr gebraucht wird
-            if (skifahrer[n].yPos > 600 && skifahrer.length > 1) {
-                skifahrer.splice(0, 1);
-                console.log(skifahrer.length);
-                }
-        }
-        //lift wird geloescht wenn nicht mehr gebraucht wird
-        if (lift[0].xPos > 800) {
-            lift.splice(0, 1);
-            console.log(lift.length);
-        }
+        //lift.filter(checkHeartbeat());
         window.setTimeout(animate, 20);
     }
+
+
 }

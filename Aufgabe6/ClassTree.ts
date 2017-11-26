@@ -6,7 +6,7 @@
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
-namespace nr5 {
+namespace nr6 {
 
     interface IntTree {
         x: number;
@@ -28,13 +28,10 @@ namespace nr5 {
             this.x = _x;
             this.y = _y;
             this.size = _size;
-            console.log(this.x + "," + this.y + "," + this.size);
             this.draw();
         }
 
         draw(): void {
-            console.log(this.x + "," + this.y + "," + this.size);
-            console.log("draw");
             crc2d.fillStyle = "#53826a";
             crc2d.beginPath();
             crc2d.moveTo(this.x, this.y);

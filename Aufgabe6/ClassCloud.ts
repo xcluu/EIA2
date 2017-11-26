@@ -6,15 +6,32 @@
 
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
-namespace nr5 {
+namespace nr6 {
 
     interface IntCloud {
-        x: number;
-        y: number;
-        pointer: function;
+        superSpecialPointer(): void;
     }
 
-    export class Cloud extends MovingObjects implements IntCloud {
+    export class Cloud extends MovingObject implements IntCloud {
+
+        constructor(x: number, y: number, callFunction: any) {
+            super(x, y);
+            this.superSpecialPointer = callFunction;
+            console.log(this.superSpecialPointer.toString());
+        }
+
+        draw(): void {
+            this.superSpecialPointer();
+        }
+
+        animate(): void {
+            this.draw();
+
+            this.x += 0.5;
+            if (this.x > 800) {
+                this.x = 0;
+            }
+        }
 
         drawCloud1(): void {
             crc2d.fillStyle = "#a6a1b0";
