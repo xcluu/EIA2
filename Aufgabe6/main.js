@@ -176,10 +176,10 @@ var nr6;
             if (lift[i].x < 400 && lift[i].x > 396 && lift[i].y < 345 && lift[i].y > 340) {
                 lift.push(new nr6.Skilift);
             }
-            if (lift[i].checkHeartbeat == false) {
-                lift.splice(i, 1);
-                console.log("o/");
-            }
+            // if (lift[i].checkHeartbeat == false) {
+            //         lift.splice(i, 1);
+            //         console.log("o/");
+            // }
         }
         //lift.filter(checkHeartbeat());
         window.setTimeout(animate, 20);

@@ -7,7 +7,7 @@
  Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
  */
 namespace nr6 {
-
+//WHYYY
     interface IntTree {
         x: number;
         y: number;
