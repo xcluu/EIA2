@@ -30,6 +30,7 @@ var StudiVZ;
     }
     function saveData(_input) {
         var tempSave = _input.split(", ", 6);
+        tempSave = _input.split(",", 6);
         if (tempSave.length == 6) {
             var matrikel_1 = Number.parseInt(tempSave[0]);
             if (Number.isNaN(matrikel_1))

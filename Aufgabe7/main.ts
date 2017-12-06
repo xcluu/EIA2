@@ -41,7 +41,7 @@ namespace StudiVZ {
 
     function saveData(_input: string): string {
         let tempSave: string[] = _input.split(", ", 6) ;
-
+        tempSave = _input.split(",", 6) ;
         if (tempSave.length == 6) {
             let matrikel: number = Number.parseInt(tempSave[0]);
             if (Number.isNaN(matrikel))
