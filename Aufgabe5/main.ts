@@ -16,11 +16,10 @@ namespace nr5 {
     let staticImg: ImageData;
     export let crc2d: canvasRenderingContext2D;
     let snowList: IntSnow[] = [];
-    let cloud: IntCloud[] = [];
+    let cloudList: IntCloud[] = [];
     let treeList: IntTree[] = [];
     let lift: IntSkilift[] = [];
     export let skifahrer: IntSkifahrer[] = [];
-    let testTree: IntTree;
 
     function init(): void {
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
@@ -32,9 +31,11 @@ namespace nr5 {
 
         crc2d.mozImageSmoothingEnabled = false;
         crc2d.imageSmoothingEnabled = true;
+
+        initBG();
+
         //draw trees
-        testTree = new Tree(700, 500, 2);
-        treeList.push(testTree);
+        treeList.push(new Tree(700, 500, 3));
         treeList.push(new Tree(800, 600, 4));
         treeList.push(new Tree(700, 230, 1));
         treeList.push(new Tree(720, 300, 1.2));
@@ -42,7 +43,6 @@ namespace nr5 {
         treeList.push(new Tree(780, 250, 0.8));
         treeList.push(new Tree(740, 205, 0.5));
 
-        initBG();
 
         //draw random trees
         for (let i: number = 0; i < 10; i++) {
@@ -56,13 +56,13 @@ namespace nr5 {
 
         //schnee wird generiert
         for (let i: number = 0; i < 50; i++) {
-            snowList.push(new Snow);
+            snowList.push(new Snowflake);
         }
 
         //wolken werden generiert
-        cloud.push(new Cloud(200));
-        cloud.push(new Cloud(300));
-        cloud.push(new Cloud(500));
+        cloudList.push(new Cloud(200));
+        cloudList.push(new Cloud(300));
+        cloudList.push(new Cloud(500));
 
         //bild wird gespeichert
         staticImg = crc2d.getImageData(0, 0, 800, 600);
@@ -223,16 +223,16 @@ namespace nr5 {
         }
 
         //wolken animieren
-        for (let i: number = 0; i < cloud.length; i++) {
-            cloud[i].x += 0.5;
-            if (cloud[i].x > 800) {
-                cloud[i].x = 0;
+        for (let i: number = 0; i < cloudList.length; i++) {
+            cloudList[i].x += 0.5;
+            if (cloudList[i].x > 800) {
+                cloudList[i].x = 0;
             }
         }
 
-        cloud[0].drawCloud1();
-        cloud[1].drawCloud2();
-        cloud[2].drawCloud1();
+        cloudList[0].drawCloud1();
+        cloudList[1].drawCloud2();
+        cloudList[2].drawCloud1();
 
         //lift animieren
         for (let i: number = 0; i < lift.length; i++) {

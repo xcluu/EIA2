@@ -1,5 +1,5 @@
 /*
- Aufgabe 4 Interface: Assoziative Skipiste
+ Aufgabe 5 Classes: OO Skipiste
  Name: Claudia Wegen
  Matrikel: 256214
  Datum: 17.11.2017
@@ -12,11 +12,10 @@ var nr5;
     window.addEventListener("load", init);
     var staticImg;
     var snowList = [];
-    var cloud = [];
+    var cloudList = [];
     var treeList = [];
     var lift = [];
     nr5.skifahrer = [];
-    var testTree;
     function init() {
         var canvas = document.getElementsByTagName("canvas")[0];
         console.log(canvas);
@@ -24,16 +23,15 @@ var nr5;
         console.log(nr5.crc2d);
         nr5.crc2d.mozImageSmoothingEnabled = false;
         nr5.crc2d.imageSmoothingEnabled = true;
+        initBG();
         //draw trees
-        testTree = new nr5.Tree(700, 500, 2);
-        treeList.push(testTree);
+        treeList.push(new nr5.Tree(700, 500, 3));
         treeList.push(new nr5.Tree(800, 600, 4));
         treeList.push(new nr5.Tree(700, 230, 1));
         treeList.push(new nr5.Tree(720, 300, 1.2));
         treeList.push(new nr5.Tree(770, 350, 1.6));
         treeList.push(new nr5.Tree(780, 250, 0.8));
         treeList.push(new nr5.Tree(740, 205, 0.5));
-        initBG();
         //draw random trees
         for (var i = 0; i < 10; i++) {
             treeList.push(new nr5.Tree);
@@ -43,12 +41,12 @@ var nr5;
         lift.push(new nr5.Skilift);
         //schnee wird generiert
         for (var i = 0; i < 50; i++) {
-            snowList.push(new nr5.Snow);
+            snowList.push(new Snowflake);
         }
         //wolken werden generiert
-        cloud.push(new nr5.Cloud(200));
-        cloud.push(new nr5.Cloud(300));
-        cloud.push(new nr5.Cloud(500));
+        cloudList.push(new nr5.Cloud(200));
+        cloudList.push(new nr5.Cloud(300));
+        cloudList.push(new nr5.Cloud(500));
         //bild wird gespeichert
         staticImg = nr5.crc2d.getImageData(0, 0, 800, 600);
         animate();
@@ -187,15 +185,15 @@ var nr5;
             snowList[i].drawSmall(0.3 + Math.random() * 0.8);
         }
         //wolken animieren
-        for (var i = 0; i < cloud.length; i++) {
-            cloud[i].x += 0.5;
-            if (cloud[i].x > 800) {
-                cloud[i].x = 0;
+        for (var i = 0; i < cloudList.length; i++) {
+            cloudList[i].x += 0.5;
+            if (cloudList[i].x > 800) {
+                cloudList[i].x = 0;
             }
         }
-        cloud[0].drawCloud1();
-        cloud[1].drawCloud2();
-        cloud[2].drawCloud1();
+        cloudList[0].drawCloud1();
+        cloudList[1].drawCloud2();
+        cloudList[2].drawCloud1();
         //lift animieren
         for (var i = 0; i < lift.length; i++) {
             lift[i].animate();
