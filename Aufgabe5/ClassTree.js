@@ -22,12 +22,10 @@ var nr5;
             this.x = _x;
             this.y = _y;
             this.size = _size;
-            console.log(this.x + "," + this.y + "," + this.size);
             this.draw();
         }
         Tree.prototype.draw = function () {
             console.log(this.x + "," + this.y + "," + this.size);
-            console.log("draw");
             nr5.crc2d.fillStyle = "#53826a";
             nr5.crc2d.beginPath();
             nr5.crc2d.moveTo(this.x, this.y);

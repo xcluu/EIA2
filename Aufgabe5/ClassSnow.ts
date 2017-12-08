@@ -15,7 +15,7 @@ namespace nr5 {
         ySmall: number;
     }
 
-    export class Snow implements IntSnow {
+    export class Snowflake implements IntSnow {
         constructor() {
             this.x = Math.random() * 800;
             this.y = Math.random() * 200;

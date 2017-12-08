@@ -41,7 +41,7 @@ var nr5;
         lift.push(new nr5.Skilift);
         //schnee wird generiert
         for (var i = 0; i < 50; i++) {
-            snowList.push(new Snowflake);
+            snowList.push(new nr5.Snowflake);
         }
         //wolken werden generiert
         cloudList.push(new nr5.Cloud(200));

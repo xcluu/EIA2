@@ -28,13 +28,11 @@ namespace nr5 {
             this.x = _x;
             this.y = _y;
             this.size = _size;
-            console.log(this.x + "," + this.y + "," + this.size);
             this.draw();
         }
 
         draw(): void {
             console.log(this.x + "," + this.y + "," + this.size);
-            console.log("draw");
             crc2d.fillStyle = "#53826a";
             crc2d.beginPath();
             crc2d.moveTo(this.x, this.y);
