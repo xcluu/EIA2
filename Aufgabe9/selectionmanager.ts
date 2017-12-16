@@ -59,7 +59,8 @@ namespace erpresserbrief {
             }
             //bei drucken von alt -> ruft delete funktion auf und setzt boolean auf true, damit nicht ein neuer char platziert wird
             if (event.keyCode == 18) {
-                this.deleteCharr(this.selectedCharr);
+                if (this.selectedCharr != undefined)
+                    this.deleteCharr(this.selectedCharr);
                 this.altDown = true;
             }
         }

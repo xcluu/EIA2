@@ -11,6 +11,7 @@ Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde n
     font-family: 'VT323', monospace;
     font-size: 40px;
     padding: 0 5px 0 5px;
+    border: 1px solid #adadad;
 }
 .selection-letter:hover {
     background-color: rgba(178, 255, 12, 0.33);
