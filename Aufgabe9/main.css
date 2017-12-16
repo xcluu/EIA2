@@ -1,0 +1,31 @@
+/*
+Aufgabe 9: Erpresserbrief
+Name: Claudia Wegen
+Matrikel: 256214
+Datum: 16.12.2017
+
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
+.selection-letter {
+    display: inline;
+    font-family: 'VT323', monospace;
+    font-size: 40px;
+    padding: 0 5px 0 5px;
+}
+.selection-letter:hover {
+    background-color: rgba(178, 255, 12, 0.33);
+}
+
+#letter-section {
+    height: 70vh;
+    width: 80vw;
+    background-color: #5b5b5b;
+    border: 1px solid #000000;
+}
+
+.letter {
+    position: absolute;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 40px;
+}
