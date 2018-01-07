@@ -72,6 +72,7 @@ namespace baumkonfig {
 
         data.addHalterung(new InfoHalterung("grün", 14.90));
         data.addHalterung(new InfoHalterung("schwarz", 14.90));
+        data.addHalterung(new InfoHalterung("keine", 0.00));
 
         data.addSchmuck(new InfoSchmuck("Kerze", 0.90));
         data.addSchmuck(new InfoSchmuck("Lichterkette", 9.90));

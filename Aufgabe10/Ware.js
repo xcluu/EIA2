@@ -6,8 +6,8 @@
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 var baumkonfig;
 (function (baumkonfig) {
-    class Ware {
-        constructor(name, preis, farbe) {
+    var Ware = /** @class */ (function () {
+        function Ware(name, preis, farbe) {
             Ware.counter++;
             this.id = "Ware " + Ware.counter;
             this.name = name;
@@ -15,9 +15,10 @@ var baumkonfig;
             this.nKorb = 1;
             this.farbe = farbe;
         }
-    }
-    //counter zum holzaehlen der waren
-    Ware.counter = 0;
+        //counter zum holzaehlen der waren
+        Ware.counter = 0;
+        return Ware;
+    }());
     baumkonfig.Ware = Ware;
 })(baumkonfig || (baumkonfig = {}));
 //# sourceMappingURL=Ware.js.map

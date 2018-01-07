@@ -6,7 +6,7 @@
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 var baumkonfig;
 (function (baumkonfig) {
-    let parentNode;
+    var parentNode;
     function createDisplayElements() {
         baumkonfig.productlist = document.createElement("ul");
         baumkonfig.productlist.className = "list-group";
@@ -17,7 +17,7 @@ var baumkonfig;
         baumkonfig.liprice.innerHTML = "Gesamtpreis: ";
         baumkonfig.liprice.innerHTML += "&emsp;" + baumkonfig.warenkorb.calcPrice() + "0€";
         baumkonfig.liprice = baumkonfig.productlist.appendChild(baumkonfig.liprice);
-        let submit = document.createElement("button");
+        var submit = document.createElement("button");
         submit.className = "btn btn-outline-primary";
         submit.innerHTML = "weiter";
         parentNode.appendChild(submit);
@@ -30,7 +30,7 @@ var baumkonfig;
     }
     baumkonfig.createDisplayElements = createDisplayElements;
     function appendListChild() {
-        for (let i = 0; i < baumkonfig.products.length; i++) {
+        for (var i = 0; i < baumkonfig.products.length; i++) {
             //produkte werden ueber dem gesamtpreis angezeigt
             baumkonfig.products[i] = baumkonfig.productlist.insertBefore(baumkonfig.products[i], baumkonfig.productlist.lastChild);
         }
@@ -41,8 +41,8 @@ var baumkonfig;
     //     liprice.innerHTML += "&emsp;" + warenkorb.calcPrice() + "0€";
     // }
     function showAlert() {
-        let selBaum = document.getElementById("baeumeAuswahl");
-        let selHalterung = document.getElementById("halterungenAuswahl");
+        var selBaum = document.getElementById("baeumeAuswahl");
+        var selHalterung = document.getElementById("halterungenAuswahl");
         if ((selBaum.selectedOptions[0].innerHTML == " -- select an option -- ") && (selHalterung.selectedOptions[0].innerHTML == " -- select an option -- ")) {
             alert("Sie haben noch nichts ausgewaehlt.. :|");
             return false;

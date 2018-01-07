@@ -7,14 +7,14 @@
 var baumkonfig;
 (function (baumkonfig) {
     //optionenfragment fuer select
-    let frag = document.createDocumentFragment(), opt, col1, col2;
-    let schmuckSelectList = [];
+    var frag = document.createDocumentFragment(), opt, col1, col2;
+    var schmuckSelectList = [];
     //counter damit jedes schmuck-select eine eigene id hat
-    let idCounter = 0;
+    var idCounter = 0;
     //die zuletzt ausgewaehlte ware
-    let previousTree;
-    let previousHalterung;
-    let previousSchmuck = [];
+    var previousTree;
+    var previousHalterung;
+    var previousSchmuck = [];
     function addSelects() {
         addBaumSelect();
         addHalterungSelect();
@@ -22,11 +22,11 @@ var baumkonfig;
     }
     baumkonfig.addSelects = addSelects;
     function addBaumSelect() {
-        let baumSelect;
+        var baumSelect;
         //erstellen der options
         baumSelect = document.getElementById("baeumeAuswahl");
-        let baeume = baumkonfig.data.getAllBaume();
-        for (let i = 0; i < baeume.length; i++) {
+        var baeume = baumkonfig.data.getAllBaume();
+        for (var i = 0; i < baeume.length; i++) {
             opt = frag.appendChild(document.createElement("option"));
             opt.value = i.toString();
             opt.id = baeume[i].id;
@@ -37,7 +37,7 @@ var baumkonfig;
             opt.addEventListener("select", this.toggleOption);
         }
         console.log(baumSelect);
-        baumSelect.addEventListener("change", () => {
+        baumSelect.addEventListener("change", function () {
             BaumOptions();
             baumkonfig.appendListChild();
         });
@@ -45,7 +45,7 @@ var baumkonfig;
     }
     //wenn ein baum ausgewaehlt wird, wird er dem warenkorb hinzugefuegt und der vorherige baum wird vom warenkorb entfernt
     function BaumOptions() {
-        let baumSelect = document.getElementById("baeumeAuswahl");
+        var baumSelect = document.getElementById("baeumeAuswahl");
         if (previousTree != null)
             baumkonfig.warenkorb.removeWare(previousTree.id);
         previousTree = (baumSelect[baumSelect.selectedIndex]);
@@ -53,9 +53,9 @@ var baumkonfig;
     }
     //optionen fuer halterungen werden erstellt
     function addHalterungSelect() {
-        let halterungSelect = document.getElementById("halterungenAuswahl");
-        let halterungen = baumkonfig.data.getAllHalterungen();
-        for (let i = 0; i < halterungen.length; i++) {
+        var halterungSelect = document.getElementById("halterungenAuswahl");
+        var halterungen = baumkonfig.data.getAllHalterungen();
+        for (var i = 0; i < halterungen.length; i++) {
             opt = frag.appendChild(document.createElement("option"));
             opt.value = i.toString();
             opt.id = halterungen[i].id;
@@ -64,7 +64,7 @@ var baumkonfig;
             col2 = opt.appendChild(document.createElement("col"));
             col2.innerHTML = "&emsp;" + halterungen[i].preis.toString() + "0€";
         }
-        halterungSelect.addEventListener("change", () => {
+        halterungSelect.addEventListener("change", function () {
             HalterungOptions();
             baumkonfig.appendListChild();
         });
@@ -72,7 +72,7 @@ var baumkonfig;
     }
     //wenn eine halterung ausgewaehlt wird, wird er dem warenkorb hinzugefuegt und der vorherige baum wird dem warenkorb entfernt
     function HalterungOptions() {
-        let halterungSelect = document.getElementById("halterungenAuswahl");
+        var halterungSelect = document.getElementById("halterungenAuswahl");
         if (previousHalterung != null)
             baumkonfig.warenkorb.removeWare(previousHalterung.id);
         previousHalterung = (halterungSelect[halterungSelect.selectedIndex]);
@@ -82,17 +82,17 @@ var baumkonfig;
     function addSchmuckSelect() {
         //push da zu jedem select ein previosSchmuck gehoert
         previousSchmuck.push(null);
-        let schmuckSelect = document.createElement("select");
+        var schmuckSelect = document.createElement("select");
         schmuckSelect.id = "schmuckAuswahl " + idCounter;
         schmuckSelect.className = "form-control";
         document.getElementById("schmuck").appendChild(schmuckSelect);
-        let defaultOpt = document.createElement("option");
+        var defaultOpt = document.createElement("option");
         defaultOpt.disabled = true;
         defaultOpt.defaultSelected = true;
         defaultOpt.innerHTML = " -- select an option -- ";
         frag.appendChild(defaultOpt);
-        let schmuck = baumkonfig.data.getAllSchmuck();
-        for (let i = 0; i < schmuck.length; i++) {
+        var schmuck = baumkonfig.data.getAllSchmuck();
+        for (var i = 0; i < schmuck.length; i++) {
             opt = frag.appendChild(document.createElement("option"));
             opt.value = i.toString();
             opt.id = schmuck[i].id;
@@ -110,7 +110,7 @@ var baumkonfig;
         schmuckSelect.appendChild(frag);
         schmuckSelectList.push(schmuckSelect);
         //input zum select wird hinzugefuegt
-        let input = addQuantityInput();
+        var input = addQuantityInput();
         input.addEventListener("change", function () {
             changeQuantity(input);
         });
@@ -128,7 +128,7 @@ var baumkonfig;
     }
     //neues input element zum aendern der anzahl wird erstellt
     function addQuantityInput() {
-        let nInput = document.createElement("input");
+        var nInput = document.createElement("input");
         nInput.type = "number";
         nInput.className = "form-control";
         nInput.id = "input " + idCounter;
@@ -138,7 +138,7 @@ var baumkonfig;
     }
     //wenn ein schmuckteil ausgewaehlt wird, wird er dem warenkorb hinzugefuegt und der vorherige baum wird dem warenkorb entfernt
     function SchmuckOptions(target) {
-        let i = parseInt(target.id.split(" ").pop());
+        var i = parseInt(target.id.split(" ").pop());
         if (previousSchmuck[i] != null)
             baumkonfig.warenkorb.removeWare(previousSchmuck[i].id);
         previousSchmuck[i] = (target[target.selectedIndex]);
@@ -146,11 +146,11 @@ var baumkonfig;
     }
     function changeQuantity(target) {
         //i bekommt die das letzte element des splits, in dem fall die nummer der input-id
-        let i = parseInt(target.id.split(" ").pop());
+        var i = parseInt(target.id.split(" ").pop());
         //sucht das select mit der gleichen id nummer
-        let relatedSelect = document.getElementById("schmuckAuswahl " + i);
+        var relatedSelect = document.getElementById("schmuckAuswahl " + i);
         //dem ausgewaehlten option...
-        let selOpt = (relatedSelect[relatedSelect.selectedIndex]);
+        var selOpt = (relatedSelect[relatedSelect.selectedIndex]);
         //...wird die neue anzahl uebergeben
         selOpt.nKorb = parseInt(target.value);
         baumkonfig.warenkorb.updateWare(selOpt);

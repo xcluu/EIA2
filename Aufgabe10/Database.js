@@ -7,71 +7,75 @@
 var baumkonfig;
 (function (baumkonfig) {
     //klasse fuer alle waren
-    class Database {
-        constructor() {
+    var Database = /** @class */ (function () {
+        function Database() {
             //erstellt leere instanzen der warenkategorien
             this.baeume = [];
             this.halterungen = [];
             this.schmuck = [];
         }
-        addBaum(b) {
+        Database.prototype.addBaum = function (b) {
             this.baeume.push(b);
-        }
-        addSchmuck(s) {
+        };
+        Database.prototype.addSchmuck = function (s) {
             this.schmuck.push(s);
-        }
-        addHalterung(h) {
+        };
+        Database.prototype.addHalterung = function (h) {
             this.halterungen.push(h);
-        }
-        getBaum(id) {
-            for (let b of this.baeume) {
+        };
+        Database.prototype.getBaum = function (id) {
+            for (var _i = 0, _a = this.baeume; _i < _a.length; _i++) {
+                var b = _a[_i];
                 if (id == b.id) {
                     return b;
                 }
             }
             console.log(id);
             return null;
-        }
-        getAllBaume() {
+        };
+        Database.prototype.getAllBaume = function () {
             return this.baeume;
-        }
-        getSchmuck(id) {
-            for (let b of this.schmuck) {
+        };
+        Database.prototype.getSchmuck = function (id) {
+            for (var _i = 0, _a = this.schmuck; _i < _a.length; _i++) {
+                var b = _a[_i];
                 if (id == b.id) {
                     return b;
                 }
             }
             console.log("not found");
             return null;
-        }
-        getAllSchmuck() {
+        };
+        Database.prototype.getAllSchmuck = function () {
             return this.schmuck;
-        }
-        getHalterung(id) {
-            for (let b of this.halterungen) {
+        };
+        Database.prototype.getHalterung = function (id) {
+            for (var _i = 0, _a = this.halterungen; _i < _a.length; _i++) {
+                var b = _a[_i];
                 if (id == b.id) {
                     return b;
                 }
             }
             console.log("not found");
             return null;
-        }
-        getAllHalterungen() {
+        };
+        Database.prototype.getAllHalterungen = function () {
             return this.halterungen;
-        }
-    }
+        };
+        return Database;
+    }());
     baumkonfig.Database = Database;
-    class Warenkorb {
-        constructor() {
+    var Warenkorb = /** @class */ (function () {
+        function Warenkorb() {
             this.warenList = [];
             this.li = [];
         }
-        addWare(w) {
+        Warenkorb.prototype.addWare = function (w) {
             //aktuelle ware wird dem warenkorb hinzugefuegt
             this.warenList.push(w);
             console.log(this.warenList);
             //listenelement zum anzeigen des warenkorbs
-            let li = document.createElement("li");
+            var li = document.createElement("li");
             li.className = "list-group-item";
             li.id = w.id;
             li.innerHTML = w.nKorb.toString() + "&emsp;";
@@ -83,10 +87,10 @@ var baumkonfig;
             baumkonfig.products = this.li;
             //neuer preis wird berechnet
             console.log(this.calcPrice());
-        }
+        };
         //funktion zum aendern der anzahl
-        updateWare(w) {
-            for (let i = 0; i < this.warenList.length; i++) {
+        Warenkorb.prototype.updateWare = function (w) {
+            for (var i = 0; i < this.warenList.length; i++) {
                 if (this.warenList[i].id == w.id) {
                     this.warenList[i].nKorb = w.nKorb;
                     this.li[i].innerHTML = this.warenList[i].nKorb.toString() + "&emsp;";
@@ -99,10 +103,10 @@ var baumkonfig;
                     console.log(this.calcPrice());
                 }
             }
-        }
+        };
         //funktionen zum entfernen der ware
-        removeWare(id) {
-            for (let i = 0; i < this.warenList.length; i++) {
+        Warenkorb.prototype.removeWare = function (id) {
+            for (var i = 0; i < this.warenList.length; i++) {
                 if (this.warenList[i].id == id) {
                     baumkonfig.products[i].parentNode.removeChild(baumkonfig.products[i]);
                     this.warenList.splice(i);
@@ -110,24 +114,25 @@ var baumkonfig;
                     return true;
                 }
             }
-        }
+        };
         //funktion zur preisberechnung
-        calcPrice() {
-            let result = 0;
-            for (let i = 0; i < this.warenList.length; i++) {
+        Warenkorb.prototype.calcPrice = function () {
+            var result = 0;
+            for (var i = 0; i < this.warenList.length; i++) {
                 result += this.warenList[i].preis * this.warenList[i].nKorb;
             }
             baumkonfig.liprice.innerHTML = "Gesamtpreis: ";
             baumkonfig.liprice.innerHTML += "&emsp;" + result + "0€";
             return result;
-        }
+        };
         //funktion zum anzeigen der jeweiligen warenpreise im warenkorb
-        calcIndividualPrice(i) {
-            let result = 0;
+        Warenkorb.prototype.calcIndividualPrice = function (i) {
+            var result = 0;
             result = this.warenList[i].preis * this.warenList[i].nKorb;
             return result;
-        }
-    }
+        };
+        return Warenkorb;
+    }());
     baumkonfig.Warenkorb = Warenkorb;
 })(baumkonfig || (baumkonfig = {}));
 //# sourceMappingURL=Database.js.map

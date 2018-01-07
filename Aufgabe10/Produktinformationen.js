@@ -7,8 +7,8 @@
 var baumkonfig;
 (function (baumkonfig) {
     //klasse fuer baeume
-    class InfoBaum {
-        constructor(name, preis) {
+    var InfoBaum = /** @class */ (function () {
+        function InfoBaum(name, preis) {
             //abstract
             baumkonfig.Ware.counter++;
             this.id = "Baum " + baumkonfig.Ware.counter; //eigene id
@@ -16,11 +16,12 @@ var baumkonfig;
             this.preis = preis;
             this.nKorb = 1; //standardmaessig 1 im warenkorb
         }
-    }
+        return InfoBaum;
+    }());
     baumkonfig.InfoBaum = InfoBaum;
     //klasse fuer schmuck
-    class InfoSchmuck {
-        constructor(name, preis, farbe) {
+    var InfoSchmuck = /** @class */ (function () {
+        function InfoSchmuck(name, preis, farbe) {
             baumkonfig.Ware.counter++;
             this.id = "Schmuck " + baumkonfig.Ware.counter;
             this.name = name;
@@ -28,11 +29,12 @@ var baumkonfig;
             this.farbe = farbe;
             this.nKorb = 1; //standardmaessig 1 im warenkorb
         }
-    }
+        return InfoSchmuck;
+    }());
     baumkonfig.InfoSchmuck = InfoSchmuck;
     //klasse fuer halterungen
-    class InfoHalterung {
-        constructor(farbe, preis) {
+    var InfoHalterung = /** @class */ (function () {
+        function InfoHalterung(farbe, preis) {
             baumkonfig.Ware.counter++;
             this.id = "Halterung " + baumkonfig.Ware.counter;
             this.name = "Halterung";
@@ -40,7 +42,8 @@ var baumkonfig;
             this.preis = preis;
             this.nKorb = 1; //standardmaessig 1 im warenkorb
         }
-    }
+        return InfoHalterung;
+    }());
     baumkonfig.InfoHalterung = InfoHalterung;
     function loadInfo() {
         baumkonfig.data.addBaum(new InfoBaum("Nordmanntanne", 24.90));
@@ -49,6 +52,7 @@ var baumkonfig;
         baumkonfig.data.addBaum(new InfoBaum("Kiefer", 24.90));
         baumkonfig.data.addHalterung(new InfoHalterung("grün", 14.90));
         baumkonfig.data.addHalterung(new InfoHalterung("schwarz", 14.90));
+        baumkonfig.data.addHalterung(new InfoHalterung("keine", 0.00));
         baumkonfig.data.addSchmuck(new InfoSchmuck("Kerze", 0.90));
         baumkonfig.data.addSchmuck(new InfoSchmuck("Lichterkette", 9.90));
         baumkonfig.data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "rot"));
