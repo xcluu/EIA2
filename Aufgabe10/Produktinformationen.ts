@@ -1,42 +1,89 @@
+// Aufgabe 10: Baumkonfigurator
+// Name: Claudia Wegen
+// Matrikel: 256214
+// Datum: 07.01.2018
+//
+// Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+
 namespace baumkonfig {
 
-    export interface InfoBaum {
+    //klasse fuer baeume
+    export class InfoBaum implements Ware {
+        id: string;
+        nKorb: number;
+        name: string;
         preis: number;
-        sorte: string;
+
+        constructor(name: string, preis: number) {
+            //abstract
+            Ware.counter++;
+            this.id = "Baum " + Ware.counter; //eigene id
+            this.name = name;
+            this.preis = preis;
+            this.nKorb = 1; //standardmaessig 1 im warenkorb
+
+        }
     }
 
-    export interface InfoSchmuck {
+    //klasse fuer schmuck
+    export class InfoSchmuck implements Ware {
+        id: string;
+        nKorb: number;
+        name: string;
         preis: number;
-        unterkat: string;
-        farbe?: string;
+        farbe?: string; //optionaler parameter farbe
+
+        constructor(name: string, preis: number, farbe?: string) {
+            Ware.counter++;
+            this.id = "Schmuck " + Ware.counter;
+            this.name = name;
+            this.preis = preis;
+            this.farbe = farbe;
+            this.nKorb = 1; //standardmaessig 1 im warenkorb
+        }
     }
 
-    export interface InfoHalterung {
+    //klasse fuer halterungen
+    export class InfoHalterung implements Ware {
+        id: string;
+        nKorb: number;
+        name: string;
         preis: number;
         farbe: string;
+
+        constructor(farbe: string, preis: number) {
+            Ware.counter++;
+            this.id = "Halterung " + Ware.counter;
+            this.name = "Halterung";
+            this.farbe = farbe;
+            this.preis = preis;
+            this.nKorb = 1; //standardmaessig 1 im warenkorb
+        }
     }
 
     export function loadInfo(): void {
-        baeume.push({preis: 19.90, sorte: "Nordmanntanne"});
-        baeume.push({preis: 19.90, sorte: "Fichte"});
-        baeume.push({preis: 99.90, sorte: "Edeltanne"});
-        baeume.push({preis: 19.90, sorte: "Kiefer"});
 
-        halterungen.push({preis: 14.90, farbe: "grün"});
-        halterungen.push({preis: 14.90, farbe: "schwarz"});
 
-        schmuck.push({preis: 0.90, unterkat: "Kerze"});
-        schmuck.push({preis: 9.90, unterkat: "Lichterkette"});
-        schmuck.push({preis: 0.90, unterkat: "Kugel", farbe: "rot"});
-        schmuck.push({preis: 0.90, unterkat: "Kugel", farbe: "gold"});
-        schmuck.push({preis: 0.90, unterkat: "Kugel", farbe: "blau"});
-        schmuck.push({preis: 0.90, unterkat: "Kugel", farbe: "grün"});
-        schmuck.push({preis: 0.50, unterkat: "Anhänger"});
-        schmuck.push({preis: 4.90, unterkat: "Lametta", farbe: "rot"});
-        schmuck.push({preis: 4.90, unterkat: "Lametta", farbe: "gold"});
-        schmuck.push({preis: 4.90, unterkat: "Lametta", farbe: "blau"});
-        schmuck.push({preis: 4.90, unterkat: "Lametta", farbe: "grün"});
+        data.addBaum(new InfoBaum("Nordmanntanne", 24.90));
+        data.addBaum(new InfoBaum("Fichte", 24.90));
+        data.addBaum(new InfoBaum("Edeltanne", 99.90));
+        data.addBaum(new InfoBaum("Kiefer", 24.90));
 
-        console.log(schmuck);
+
+        data.addHalterung(new InfoHalterung("grün", 14.90));
+        data.addHalterung(new InfoHalterung("schwarz", 14.90));
+
+        data.addSchmuck(new InfoSchmuck("Kerze", 0.90));
+        data.addSchmuck(new InfoSchmuck("Lichterkette", 9.90));
+        data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "rot"));
+        data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "gold"));
+        data.addSchmuck(new InfoSchmuck("Kugel", 4.90, "silber"));
+        data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "blau"));
+        data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "grün"));
+        data.addSchmuck(new InfoSchmuck("Anhänger", 0.90));
+        data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "rot"));
+        data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "gold"));
+        data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "silber"));
+        data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "blau"));
     }
 }

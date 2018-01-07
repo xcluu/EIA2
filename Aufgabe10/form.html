@@ -1,0 +1,75 @@
+<!--// Aufgabe 10: Baumkonfigurator-->
+<!--// Name: Claudia Wegen-->
+<!--// Matrikel: 256214-->
+<!--// Datum: 07.01.2018-->
+<!--//-->
+<!--// Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weihnachtsbaum-Konfigurator</title>
+    <script language="javascript" type="text/javascript" src="Ware.js"></script>
+    <script language="javascript" type="text/javascript" src="Produktinformationen.js"></script>
+    <script language="javascript" type="text/javascript" src="selectbuilder.js"></script>
+    <script language="javascript" type="text/javascript" src="displaybuilder.js"></script>
+    <script language="javascript" type="text/javascript" src="Database.js"></script>
+    <script language="javascript" type="text/javascript" src="main.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+
+<form class="form">
+    <legend>Adressdaten</legend>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputSurname">Vorname</label>
+            <input type="text" class="form-control" id="inputSurname" placeholder="Vorname">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputLastName" >Nachname</label>
+            <input type="text" class="form-control" id="inputLastName" placeholder="Nachname">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Addresse</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="Adresse">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Addresse 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Adresse 2">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label for="inputCity">Stadt</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputZip">Postleitzahl</label>
+            <input type="text" class="form-control" id="inputZip">
+        </div>
+    </div>
+<br>
+
+<div class="form-check">
+    <legend id="versand">Versandoptionen</legend>
+    <input class="form-check-input" type="radio" name="versandRadios" id="versandRadios1" value="option1" checked>
+    <label class="form-check-label" for="versandRadios1">
+        Kostenlos - Standard-Versand (3-5 Tage Bearbeitung)
+    </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="versandRadios" id="versandRadios2" value="option2">
+    <label class="form-check-label" for="versandRadios2">
+        5,00$ - Express-Versand (1 Tag Bearbeitung)
+    </label>
+</div>
+    <br>
+<button type="submit" class="btn btn-primary">bestellen</button>
+</form>
+</body>
+</html>

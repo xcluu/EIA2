@@ -1,20 +1,40 @@
+// Aufgabe 10: Baumkonfigurator
+// Name: Claudia Wegen
+// Matrikel: 256214
+// Datum: 07.01.2018
+//
+// Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+
 namespace baumkonfig {
-    interface IntWare {
+    export interface IntWare {
+
+        id: string;
         nKorb: number;
-        nLager: number;
         preis: number;
-        titel: string;
+        name: string;
+        farbe?: string;
     }
 
     export class Ware implements IntWare {
+        //counter zum holzaehlen der waren
+        static counter: number = 0;
+        id: string;
         nKorb: number;
-        nLager: number;
         preis: number;
-        titel: string;
+        name: string;
+        farbe?: string;
 
-        constructor() {
-            //abstract
+        constructor(name: string, preis: number, farbe?: string) {
+            Ware.counter++;
+            this.id = "Ware " + Ware.counter;
+            this.name = name;
+            this.preis = preis;
+            this.nKorb = 1;
+            this.farbe = farbe;
         }
 
     }
+
+
 }
+

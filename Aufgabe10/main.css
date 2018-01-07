@@ -1,0 +1,57 @@
+/*// Aufgabe 10: Baumkonfigurator*/
+/*// Name: Claudia Wegen*/
+/*// Matrikel: 256214*/
+/*// Datum: 07.01.2018*/
+/*//*/
+/*// Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.*/
+body {
+    background-color: #fbfbfb;
+}
+.left {
+    width: 30vw;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.left section {
+    margin-bottom: 20px;
+}
+.left select {
+    display: inline;
+    position: relative;
+    margin-bottom: 10px;
+}
+.left input {
+    display: inline;
+    position: absolute;
+    width: 60px;
+    margin-left: 5px;
+}
+
+.right {
+    width: 40vw;
+    position: absolute;
+    left: 50vw;
+    top: 30px;
+}
+
+.right button {
+    margin-top: 10px;
+    width: 100px;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #5b5b5b;
+}
+
+.form {
+    width: 50vw;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+#versand {
+    margin-left: -20px;
+}

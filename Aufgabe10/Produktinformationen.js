@@ -1,24 +1,66 @@
+// Aufgabe 10: Baumkonfigurator
+// Name: Claudia Wegen
+// Matrikel: 256214
+// Datum: 07.01.2018
+//
+// Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 var baumkonfig;
 (function (baumkonfig) {
+    //klasse fuer baeume
+    class InfoBaum {
+        constructor(name, preis) {
+            //abstract
+            baumkonfig.Ware.counter++;
+            this.id = "Baum " + baumkonfig.Ware.counter; //eigene id
+            this.name = name;
+            this.preis = preis;
+            this.nKorb = 1; //standardmaessig 1 im warenkorb
+        }
+    }
+    baumkonfig.InfoBaum = InfoBaum;
+    //klasse fuer schmuck
+    class InfoSchmuck {
+        constructor(name, preis, farbe) {
+            baumkonfig.Ware.counter++;
+            this.id = "Schmuck " + baumkonfig.Ware.counter;
+            this.name = name;
+            this.preis = preis;
+            this.farbe = farbe;
+            this.nKorb = 1; //standardmaessig 1 im warenkorb
+        }
+    }
+    baumkonfig.InfoSchmuck = InfoSchmuck;
+    //klasse fuer halterungen
+    class InfoHalterung {
+        constructor(farbe, preis) {
+            baumkonfig.Ware.counter++;
+            this.id = "Halterung " + baumkonfig.Ware.counter;
+            this.name = "Halterung";
+            this.farbe = farbe;
+            this.preis = preis;
+            this.nKorb = 1; //standardmaessig 1 im warenkorb
+        }
+    }
+    baumkonfig.InfoHalterung = InfoHalterung;
     function loadInfo() {
-        baumkonfig.baeume.push({ preis: 19.90, sorte: "Nordmanntanne" });
-        baumkonfig.baeume.push({ preis: 19.90, sorte: "Fichte" });
-        baumkonfig.baeume.push({ preis: 99.90, sorte: "Edeltanne" });
-        baumkonfig.baeume.push({ preis: 19.90, sorte: "Kiefer" });
-        baumkonfig.halterungen.push({ preis: 14.90, farbe: "grün" });
-        baumkonfig.halterungen.push({ preis: 14.90, farbe: "schwarz" });
-        baumkonfig.schmuck.push({ preis: 0.90, unterkat: "Kerze" });
-        baumkonfig.schmuck.push({ preis: 9.90, unterkat: "Lichterkette" });
-        baumkonfig.schmuck.push({ preis: 0.90, unterkat: "Kugel", farbe: "rot" });
-        baumkonfig.schmuck.push({ preis: 0.90, unterkat: "Kugel", farbe: "gold" });
-        baumkonfig.schmuck.push({ preis: 0.90, unterkat: "Kugel", farbe: "blau" });
-        baumkonfig.schmuck.push({ preis: 0.90, unterkat: "Kugel", farbe: "grün" });
-        baumkonfig.schmuck.push({ preis: 0.50, unterkat: "Anhänger" });
-        baumkonfig.schmuck.push({ preis: 4.90, unterkat: "Lametta", farbe: "rot" });
-        baumkonfig.schmuck.push({ preis: 4.90, unterkat: "Lametta", farbe: "gold" });
-        baumkonfig.schmuck.push({ preis: 4.90, unterkat: "Lametta", farbe: "blau" });
-        baumkonfig.schmuck.push({ preis: 4.90, unterkat: "Lametta", farbe: "grün" });
-        console.log(baumkonfig.schmuck);
+        baumkonfig.data.addBaum(new InfoBaum("Nordmanntanne", 24.90));
+        baumkonfig.data.addBaum(new InfoBaum("Fichte", 24.90));
+        baumkonfig.data.addBaum(new InfoBaum("Edeltanne", 99.90));
+        baumkonfig.data.addBaum(new InfoBaum("Kiefer", 24.90));
+        baumkonfig.data.addHalterung(new InfoHalterung("grün", 14.90));
+        baumkonfig.data.addHalterung(new InfoHalterung("schwarz", 14.90));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Kerze", 0.90));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Lichterkette", 9.90));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "rot"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "gold"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Kugel", 4.90, "silber"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "blau"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Kugel", 0.90, "grün"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Anhänger", 0.90));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "rot"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "gold"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "silber"));
+        baumkonfig.data.addSchmuck(new InfoSchmuck("Lametta", 4.90, "blau"));
     }
     baumkonfig.loadInfo = loadInfo;
 })(baumkonfig || (baumkonfig = {}));
