@@ -169,6 +169,7 @@ namespace baumkonfig {
 
             for (let i: number = 0; i < this.warenList.length; i++) {
                 result += this.warenList[i].preis * this.warenList[i].nKorb;
+                result = result * 100 / 100;
             }
 
             liprice.innerHTML = "Gesamtpreis: ";

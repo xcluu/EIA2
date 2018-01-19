@@ -120,6 +120,7 @@ var baumkonfig;
             var result = 0;
             for (var i = 0; i < this.warenList.length; i++) {
                 result += this.warenList[i].preis * this.warenList[i].nKorb;
+                result = result * 100 / 100;
             }
             baumkonfig.liprice.innerHTML = "Gesamtpreis: ";
             baumkonfig.liprice.innerHTML += "&emsp;" + result + "0€";
