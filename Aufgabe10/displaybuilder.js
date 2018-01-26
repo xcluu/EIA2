@@ -4,38 +4,28 @@
 // Datum: 07.01.2018
 //
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
-var baumkonfig;
-(function (baumkonfig) {
+var aufg11;
+(function (aufg11) {
     var parentNode;
     function createDisplayElements() {
-        baumkonfig.productlist = document.createElement("ul");
-        baumkonfig.productlist.className = "list-group";
+        aufg11.productlist = document.createElement("ul");
+        aufg11.productlist.className = "list-group";
         parentNode = document.getElementById("display");
-        baumkonfig.productlist = parentNode.appendChild(baumkonfig.productlist);
-        baumkonfig.liprice = document.createElement("li");
-        baumkonfig.liprice.className = "list-group-item";
-        baumkonfig.liprice.innerHTML = "Gesamtpreis: ";
-        baumkonfig.liprice.innerHTML += "&emsp;" + baumkonfig.warenkorb.calcPrice() + "0€";
-        baumkonfig.liprice = baumkonfig.productlist.appendChild(baumkonfig.liprice);
-        var submit = document.createElement("button");
-        submit.className = "btn btn-outline-primary";
-        submit.innerHTML = "weiter";
-        parentNode.appendChild(submit);
-        submit.addEventListener("click", function () {
-            //wenn anforderungen erfuellt sind, leitet weiter zur naechsten seite
-            if (showAlert() == true) {
-                window.location.href = "form.html";
-            }
-        });
+        aufg11.productlist = parentNode.appendChild(aufg11.productlist);
+        aufg11.liprice = document.createElement("li");
+        aufg11.liprice.className = "list-group-item";
+        aufg11.liprice.innerHTML = "Gesamtpreis: ";
+        aufg11.liprice.innerHTML += "&emsp;" + aufg11.warenkorb.calcPrice() + "0€";
+        aufg11.liprice = aufg11.productlist.appendChild(aufg11.liprice);
     }
-    baumkonfig.createDisplayElements = createDisplayElements;
+    aufg11.createDisplayElements = createDisplayElements;
     function appendListChild() {
-        for (var i = 0; i < baumkonfig.products.length; i++) {
+        for (var i = 0; i < aufg11.products.length; i++) {
             //produkte werden ueber dem gesamtpreis angezeigt
-            baumkonfig.products[i] = baumkonfig.productlist.insertBefore(baumkonfig.products[i], baumkonfig.productlist.lastChild);
+            aufg11.products[i] = aufg11.productlist.insertBefore(aufg11.products[i], aufg11.productlist.lastChild);
         }
     }
-    baumkonfig.appendListChild = appendListChild;
+    aufg11.appendListChild = appendListChild;
     // export function updateTotalPrice(): void {
     //     liprice.innerHTML = "Gesamtpreis: ";
     //     liprice.innerHTML += "&emsp;" + warenkorb.calcPrice() + "0€";
@@ -57,5 +47,5 @@ var baumkonfig;
         }
         return true;
     }
-})(baumkonfig || (baumkonfig = {}));
+})(aufg11 || (aufg11 = {}));
 //# sourceMappingURL=displaybuilder.js.map

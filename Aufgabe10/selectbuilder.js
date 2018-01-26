@@ -4,8 +4,8 @@
 // Datum: 07.01.2018
 //
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
-var baumkonfig;
-(function (baumkonfig) {
+var aufg11;
+(function (aufg11) {
     //optionenfragment fuer select
     var frag = document.createDocumentFragment(), opt, col1, col2;
     var schmuckSelectList = [];
@@ -20,12 +20,12 @@ var baumkonfig;
         addHalterungSelect();
         addSchmuckSelect();
     }
-    baumkonfig.addSelects = addSelects;
+    aufg11.addSelects = addSelects;
     function addBaumSelect() {
         var baumSelect;
         //erstellen der options
         baumSelect = document.getElementById("baeumeAuswahl");
-        var baeume = baumkonfig.data.getAllBaume();
+        var baeume = aufg11.data.getAllBaume();
         for (var i = 0; i < baeume.length; i++) {
             opt = frag.appendChild(document.createElement("option"));
             opt.value = i.toString();
@@ -36,10 +36,11 @@ var baumkonfig;
             col2.innerHTML = "&emsp;" + baeume[i].preis.toString() + "0€";
             opt.addEventListener("select", this.toggleOption);
         }
+        baumSelect.name = "Baumart";
         console.log(baumSelect);
         baumSelect.addEventListener("change", function () {
             BaumOptions();
-            baumkonfig.appendListChild();
+            appendListChild();
         });
         baumSelect.appendChild(frag);
     }
@@ -47,14 +48,14 @@ var baumkonfig;
     function BaumOptions() {
         var baumSelect = document.getElementById("baeumeAuswahl");
         if (previousTree != null)
-            baumkonfig.warenkorb.removeWare(previousTree.id);
+            aufg11.warenkorb.removeWare(previousTree.id);
         previousTree = (baumSelect[baumSelect.selectedIndex]);
-        baumkonfig.warenkorb.addWare(baumkonfig.data.getBaum(previousTree.id));
+        aufg11.warenkorb.addWare(aufg11.data.getBaum(previousTree.id));
     }
     //optionen fuer halterungen werden erstellt
     function addHalterungSelect() {
         var halterungSelect = document.getElementById("halterungenAuswahl");
-        var halterungen = baumkonfig.data.getAllHalterungen();
+        var halterungen = aufg11.data.getAllHalterungen();
         for (var i = 0; i < halterungen.length; i++) {
             opt = frag.appendChild(document.createElement("option"));
             opt.value = i.toString();
@@ -64,9 +65,10 @@ var baumkonfig;
             col2 = opt.appendChild(document.createElement("col"));
             col2.innerHTML = "&emsp;" + halterungen[i].preis.toString() + "0€";
         }
+        halterungSelect.name = "Halterung";
         halterungSelect.addEventListener("change", function () {
             HalterungOptions();
-            baumkonfig.appendListChild();
+            appendListChild();
         });
         halterungSelect.appendChild(frag);
     }
@@ -74,9 +76,9 @@ var baumkonfig;
     function HalterungOptions() {
         var halterungSelect = document.getElementById("halterungenAuswahl");
         if (previousHalterung != null)
-            baumkonfig.warenkorb.removeWare(previousHalterung.id);
+            aufg11.warenkorb.removeWare(previousHalterung.id);
         previousHalterung = (halterungSelect[halterungSelect.selectedIndex]);
-        baumkonfig.warenkorb.addWare(baumkonfig.data.getHalterung(previousHalterung.id));
+        aufg11.warenkorb.addWare(aufg11.data.getHalterung(previousHalterung.id));
     }
     //hinzufuegen der schmuckoptionen
     function addSchmuckSelect() {
@@ -91,7 +93,7 @@ var baumkonfig;
         defaultOpt.defaultSelected = true;
         defaultOpt.innerHTML = " -- select an option -- ";
         frag.appendChild(defaultOpt);
-        var schmuck = baumkonfig.data.getAllSchmuck();
+        var schmuck = aufg11.data.getAllSchmuck();
         for (var i = 0; i < schmuck.length; i++) {
             opt = frag.appendChild(document.createElement("option"));
             opt.value = i.toString();
@@ -107,6 +109,7 @@ var baumkonfig;
             col2.innerHTML = "&emsp;" + schmuck[i].preis.toString() + "0€";
             opt.addEventListener("select ", this.toggleOption);
         }
+        schmuckSelect.name = "Schmuck";
         schmuckSelect.appendChild(frag);
         schmuckSelectList.push(schmuckSelect);
         //input zum select wird hinzugefuegt
@@ -123,13 +126,14 @@ var baumkonfig;
         schmuckSelect.addEventListener("change", function () {
             changeSchmuckSelect(input);
             SchmuckOptions(schmuckSelect);
-            baumkonfig.appendListChild();
+            appendListChild();
         });
     }
     //neues input element zum aendern der anzahl wird erstellt
     function addQuantityInput() {
         var nInput = document.createElement("input");
         nInput.type = "number";
+        nInput.name = "schmuckAnzahl";
         nInput.className = "form-control";
         nInput.id = "input " + idCounter;
         idCounter++;
@@ -140,9 +144,9 @@ var baumkonfig;
     function SchmuckOptions(target) {
         var i = parseInt(target.id.split(" ").pop());
         if (previousSchmuck[i] != null)
-            baumkonfig.warenkorb.removeWare(previousSchmuck[i].id);
+            aufg11.warenkorb.removeWare(previousSchmuck[i].id);
         previousSchmuck[i] = (target[target.selectedIndex]);
-        baumkonfig.warenkorb.addWare(baumkonfig.data.getSchmuck(previousSchmuck[i].id));
+        aufg11.warenkorb.addWare(aufg11.data.getSchmuck(previousSchmuck[i].id));
     }
     function changeQuantity(target) {
         //i bekommt die das letzte element des splits, in dem fall die nummer der input-id
@@ -153,11 +157,11 @@ var baumkonfig;
         var selOpt = (relatedSelect[relatedSelect.selectedIndex]);
         //...wird die neue anzahl uebergeben
         selOpt.nKorb = parseInt(target.value);
-        baumkonfig.warenkorb.updateWare(selOpt);
+        aufg11.warenkorb.updateWare(selOpt);
     }
     function changeSchmuckSelect(target) {
         //standard-wert des inputs wird auf 1 gesetzt
         target.value = "1";
     }
-})(baumkonfig || (baumkonfig = {}));
+})(aufg11 || (aufg11 = {}));
 //# sourceMappingURL=selectbuilder.js.map

@@ -4,15 +4,15 @@
 // Datum: 07.01.2018
 //
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
-var baumkonfig;
-(function (baumkonfig) {
+var aufg11;
+(function (aufg11) {
     window.addEventListener("load", init);
     function init() {
-        baumkonfig.data = new baumkonfig.Database();
-        baumkonfig.warenkorb = new baumkonfig.Warenkorb();
-        baumkonfig.loadInfo();
-        baumkonfig.addSelects();
-        baumkonfig.createDisplayElements();
+        aufg11.data = new Database();
+        aufg11.warenkorb = new Warenkorb();
+        loadInfo();
+        addSelects();
+        createDisplayElements();
     }
-})(baumkonfig || (baumkonfig = {}));
+})(aufg11 || (aufg11 = {}));
 //# sourceMappingURL=main.js.map

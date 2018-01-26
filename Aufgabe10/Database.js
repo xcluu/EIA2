@@ -4,8 +4,8 @@
 // Datum: 07.01.2018
 //
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
-var baumkonfig;
-(function (baumkonfig) {
+var aufg11;
+(function (aufg11) {
     //klasse fuer alle waren
     var Database = /** @class */ (function () {
         function Database() {
@@ -64,7 +64,7 @@ var baumkonfig;
         };
         return Database;
     }());
-    baumkonfig.Database = Database;
+    aufg11.Database = Database;
     var Warenkorb = /** @class */ (function () {
         function Warenkorb() {
             this.warenList = [];
@@ -84,7 +84,7 @@ var baumkonfig;
                 li.innerHTML += ", " + w.farbe;
             li.innerHTML += "&emsp;" + w.preis.toString() + "0€";
             this.li.push(li);
-            baumkonfig.products = this.li;
+            products = this.li;
             //neuer preis wird berechnet
             console.log(this.calcPrice());
         };
@@ -98,7 +98,7 @@ var baumkonfig;
                     if (this.warenList[i].farbe != null)
                         this.li[i].innerHTML += ", " + this.warenList[i].farbe;
                     this.li[i].innerHTML += "&emsp;" + this.calcIndividualPrice(i).toString() + "0€";
-                    baumkonfig.products[i] = this.li[i];
+                    products[i] = this.li[i];
                     console.log(this.warenList);
                     console.log(this.calcPrice());
                 }
@@ -108,7 +108,7 @@ var baumkonfig;
         Warenkorb.prototype.removeWare = function (id) {
             for (var i = 0; i < this.warenList.length; i++) {
                 if (this.warenList[i].id == id) {
-                    baumkonfig.products[i].parentNode.removeChild(baumkonfig.products[i]);
+                    products[i].parentNode.removeChild(products[i]);
                     this.warenList.splice(i);
                     this.li.splice(i);
                     return true;
@@ -122,8 +122,8 @@ var baumkonfig;
                 result += this.warenList[i].preis * this.warenList[i].nKorb;
                 result = result * 100 / 100;
             }
-            baumkonfig.liprice.innerHTML = "Gesamtpreis: ";
-            baumkonfig.liprice.innerHTML += "&emsp;" + result + "0€";
+            liprice.innerHTML = "Gesamtpreis: ";
+            liprice.innerHTML += "&emsp;" + result + "0€";
             return result;
         };
         //funktion zum anzeigen der jeweiligen warenpreise im warenkorb
@@ -134,6 +134,6 @@ var baumkonfig;
         };
         return Warenkorb;
     }());
-    baumkonfig.Warenkorb = Warenkorb;
-})(baumkonfig || (baumkonfig = {}));
+    aufg11.Warenkorb = Warenkorb;
+})(aufg11 || (aufg11 = {}));
 //# sourceMappingURL=Database.js.map

@@ -55,3 +55,9 @@ h1 {
 #versand {
     margin-left: -20px;
 }
+
+.unten {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 20px;
+}

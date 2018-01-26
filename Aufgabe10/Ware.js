@@ -4,8 +4,8 @@
 // Datum: 07.01.2018
 //
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
-var baumkonfig;
-(function (baumkonfig) {
+var aufg11;
+(function (aufg11) {
     var Ware = /** @class */ (function () {
         function Ware(name, preis, farbe) {
             Ware.counter++;
@@ -19,6 +19,6 @@ var baumkonfig;
         Ware.counter = 0;
         return Ware;
     }());
-    baumkonfig.Ware = Ware;
-})(baumkonfig || (baumkonfig = {}));
+    aufg11.Ware = Ware;
+})(aufg11 || (aufg11 = {}));
 //# sourceMappingURL=Ware.js.map

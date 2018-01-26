@@ -5,7 +5,7 @@
 //
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 
-namespace baumkonfig {
+namespace aufg11 {
     //optionenfragment fuer select
     let frag: DocumentFragment = document.createDocumentFragment(),
         opt: HTMLOptionElement, col1: HTMLTableColElement, col2: HTMLTableColElement;
@@ -47,6 +47,7 @@ namespace baumkonfig {
             opt.addEventListener("select", this.toggleOption);
 
         }
+        baumSelect.name = "Baumart";
         console.log(baumSelect);
 
         baumSelect.addEventListener("change", () => {
@@ -87,6 +88,7 @@ namespace baumkonfig {
             col2.innerHTML = "&emsp;" + halterungen[i].preis.toString() + "0€";
         }
 
+        halterungSelect.name = "Halterung";
 
         halterungSelect.addEventListener("change", () => {
             HalterungOptions();
@@ -145,6 +147,7 @@ namespace baumkonfig {
             opt.addEventListener("select ", this.toggleOption);
         }
 
+        schmuckSelect.name = "Schmuck";
 
         schmuckSelect.appendChild(frag);
 
@@ -180,6 +183,7 @@ namespace baumkonfig {
     function addQuantityInput(): HTMLInputElement {
         let nInput: HTMLInputElement = document.createElement("input");
         nInput.type = "number";
+        nInput.name = "schmuckAnzahl";
         nInput.className = "form-control";
         nInput.id = "input " + idCounter;
         idCounter++;

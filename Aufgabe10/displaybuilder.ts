@@ -5,7 +5,7 @@
 //
 // Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 
-namespace baumkonfig {
+namespace aufg11 {
     let parentNode: HTMLDivElement;
 
     export let productlist: HTMLUListElement;
@@ -28,20 +28,6 @@ namespace baumkonfig {
         liprice.innerHTML = "Gesamtpreis: ";
         liprice.innerHTML += "&emsp;" + warenkorb.calcPrice() + "0€";
         liprice = productlist.appendChild(liprice);
-
-        let submit: HTMLButtonElement = document.createElement("button");
-        submit.className = "btn btn-outline-primary";
-        submit.innerHTML = "weiter";
-
-
-        parentNode.appendChild(submit);
-
-        submit.addEventListener("click", function(): void {
-        //wenn anforderungen erfuellt sind, leitet weiter zur naechsten seite
-            if (showAlert() == true) {
-                window.location.href = "form.html";
-            }
-        });
 
     }
 
